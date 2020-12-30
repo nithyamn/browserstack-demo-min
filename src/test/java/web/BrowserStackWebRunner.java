@@ -20,6 +20,7 @@ public class BrowserStackWebRunner {
     public WebDriver driver;
     public static String username;
     public static String accessKey;
+    public static String buildName;
 
     private Local bsLocal;
 
@@ -47,6 +48,11 @@ public class BrowserStackWebRunner {
             if (capabilities.getCapability(pair.getKey().toString()) == null) {
                 capabilities.setCapability(pair.getKey().toString(), pair.getValue().toString());
             }
+        }
+
+        buildName  = (String) config.get("build");
+        if(buildName.equals("BROWSERSTACK_BUILD_NAME")){
+            buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
         }
 
         username = System.getenv("BROWSERSTACK_USERNAME");

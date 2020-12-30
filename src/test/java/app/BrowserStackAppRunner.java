@@ -19,6 +19,7 @@ public class BrowserStackAppRunner {
     private Local l;
     public String username;
     public String accessKey;
+    public String buildName;
     @BeforeMethod(alwaysRun=true)
     @org.testng.annotations.Parameters(value={"config", "environment"})
     public void setUp(String config_file, String environment) throws Exception {
@@ -26,10 +27,7 @@ public class BrowserStackAppRunner {
         JSONObject config = (JSONObject) parser.parse(new FileReader("src/test/resources/app/conf/" + config_file));
         JSONObject envs = (JSONObject) config.get("environments");
 
-        String buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
-
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("build", buildName);
 
         Map<String, String> envCapabilities = (Map<String, String>) envs.get(environment);
         Iterator it = envCapabilities.entrySet().iterator();
@@ -47,6 +45,10 @@ public class BrowserStackAppRunner {
             }
         }
 
+        buildName  = (String) config.get("build");
+        if(buildName.equals("BROWSERSTACK_BUILD_NAME")){
+            buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
+        }
         username = System.getenv("BROWSERSTACK_USERNAME");
         if(username == null) {
             username = (String) config.get("user");

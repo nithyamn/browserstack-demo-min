@@ -4,8 +4,8 @@
   "key": "BROWSERSTACK_ACCESS_KEY",
 
   "capabilities": {
-    "build": "Java Testng - Web",
-    "project": "BrowserStack demo",
+    "build": "BROWSERSTACK_BUILD_NAME",
+    "project": "BrowserStack demo - Web",
     "name": "parallel_test",
     "browserstack.debug": true,
     "browserstack.networkLogs": true,

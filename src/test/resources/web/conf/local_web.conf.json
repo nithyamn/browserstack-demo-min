@@ -7,8 +7,8 @@
     "build": "BROWSERSTACK_BUILD_NAME",
     "project": "BrowserStack demo - Web",
     "name": "local_test",
-    "browserstack.debug": true,
-    "browserstack.networkLogs": true,
+    "browserstack.debug": "true",
+    "browserstack.networkLogs": "true",
     "browserstack.console": "verbose",
     "browserstack.local": "true"
   },

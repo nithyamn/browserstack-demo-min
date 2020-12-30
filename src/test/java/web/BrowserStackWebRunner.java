@@ -34,6 +34,14 @@ public class BrowserStackWebRunner {
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
+
+        buildName  =((Map<String, String>) config.get("capabilities")).get("build");
+        //System.out.println(buildName);
+        if(buildName.equals("BROWSERSTACK_BUILD_NAME")){
+            buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
+            capabilities.setCapability("build",buildName);
+        }
+
         Map<String, String> envCapabilities = (Map<String, String>) envs.get(environment);
         Iterator it = envCapabilities.entrySet().iterator();
         while (it.hasNext()) {
@@ -50,10 +58,7 @@ public class BrowserStackWebRunner {
             }
         }
 
-        buildName  = (String) config.get("build");
-        if(buildName.equals("BROWSERSTACK_BUILD_NAME")){
-            buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
-        }
+
 
         username = System.getenv("BROWSERSTACK_USERNAME");
         if (username == null) {

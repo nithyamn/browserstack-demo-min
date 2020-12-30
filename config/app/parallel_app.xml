@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Parallel" thread-count="3" parallel="tests">
+    <test name="SingleTestPixel3">
+        <parameter name="config" value="parallel_app.conf.json"/>
+        <parameter name="environment" value="google"/>
+        <classes>
+            <class name="app.SingleApp"/>
+        </classes>
+    </test>
+
+    <test name="SingleTestGalaxyS9">
+        <parameter name="config" value="parallel_app.conf.json"/>
+        <parameter name="environment" value="samsung"/>
+        <classes>
+            <class name="app.SingleApp"/>
+        </classes>
+    </test>
+
+    <test name="SingleTestOnePlus8">
+        <parameter name="config" value="parallel_app.conf.json"/>
+        <parameter name="environment" value="oneplus"/>
+        <classes>
+            <class name="app.SingleApp"/>
+        </classes>
+    </test>
+</suite>

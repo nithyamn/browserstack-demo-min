@@ -1,0 +1,24 @@
+{
+  "server": "hub-cloud.browserstack.com",
+  "user": "BROWSERSTACK_USERNAME",
+  "key": "BROWSERSTACK_ACCESS_KEY",
+
+  "capabilities": {
+    "build": "Java Testng - Web",
+    "project": "BrowserStack demo",
+    "name": "single_test",
+    "browserstack.debug": true,
+    "browserstack.networkLogs": true,
+    "browserstack.console": "verbose",
+    "browserstack.geoLocation": "US"
+  },
+
+  "environments": {
+    "chrome": {
+      "os": "OS X",
+      "os_version": "Big Sur",
+      "browser": "Safari",
+      "browser_version": "14.0"
+    }
+  }
+}

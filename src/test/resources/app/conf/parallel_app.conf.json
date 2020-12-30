@@ -1,0 +1,27 @@
+{
+  "server": "hub-cloud.browserstack.com",
+  "user": "BROWSERSTACK_USERNAME",
+  "key": "BROWSERSTACK_ACCESS_KEY",
+
+  "capabilities": {
+    "build": "Java Testng - App",
+    "project": "BrowserStack demo",
+    "name": "parallel_test",
+    "browserstack.debug": true,
+    "browserstack.networkLogs": "true",
+    "app": "bs://72ac75bf8a391aed7d11d4a512ba43d0495ac3ec"
+  },
+
+  "environments": {
+    "google": {
+      "device": "Google Pixel 5"
+    },
+    "samsung": {
+      "device": "Samsung Galaxy Tab S7"
+    },
+    "oneplus": {
+      "device": "OnePlus 8"
+    }
+  }
+}
+

@@ -1,0 +1,24 @@
+{
+  "server": "hub-cloud.browserstack.com",
+  "user": "BROWSERSTACK_USERNAME",
+  "key": "BROWSERSTACK_ACCESS_KEY",
+
+  "capabilities": {
+    "build": "Java Testng - Web",
+    "project": "BrowserStack demo",
+    "name": "local_test",
+    "browserstack.debug": true,
+    "browserstack.networkLogs": true,
+    "browserstack.console": "verbose",
+    "browserstack.local": "true"
+  },
+
+  "environments": {
+    "chrome": {
+      "os": "Windows",
+      "os_version": "10",
+      "browser": "Edge",
+      "browser_version": "86.0"
+    }
+  }
+}

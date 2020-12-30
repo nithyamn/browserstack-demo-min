@@ -1,4 +1,4 @@
-package app;
+package app.android;
 
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidElement;

@@ -5,23 +5,22 @@
 
   "capabilities": {
     "build": "BROWSERSTACK_BUILD_NAME",
-    "project": "BrowserStack demo - App",
+    "project": "BrowserStack demo - App IOS",
     "name": "parallel_test",
-    "browserstack.debug": true,
+    "browserstack.debug": "true",
     "browserstack.networkLogs": "true",
-    "app": "bs://72ac75bf8a391aed7d11d4a512ba43d0495ac3ec"
+    "app": "BROWSERSTACK_APP_ID"
   },
 
   "environments": {
-    "google": {
-      "device": "Google Pixel 5"
+    "iOS1": {
+      "device": "iPhone 11"
     },
-    "samsung": {
-      "device": "Samsung Galaxy Tab S7"
+    "iOS2": {
+      "device": "iPhone XS"
     },
-    "oneplus": {
-      "device": "OnePlus 8"
+    "iOS3": {
+      "device": "iPad 7th"
     }
   }
 }
-

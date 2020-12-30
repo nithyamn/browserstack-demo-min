@@ -146,7 +146,7 @@
         </profile>
 
         <profile>
-            <id>single_app</id>
+            <id>single_and</id>
             <build>
                 <plugins>
                     <plugin>
@@ -154,7 +154,7 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
                             <suiteXmlFiles>
-                                <suiteXmlFile>config/app/single_app.xml</suiteXmlFile>
+                                <suiteXmlFile>config/app/android/single_and.xml</suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
                     </plugin>
@@ -163,7 +163,7 @@
         </profile>
 
         <profile>
-            <id>local_app</id>
+            <id>local_and</id>
             <build>
                 <plugins>
                     <plugin>
@@ -171,7 +171,7 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
                             <suiteXmlFiles>
-                                <suiteXmlFile>config/app/local_app.xml</suiteXmlFile>
+                                <suiteXmlFile>config/app/android/local_and.xml</suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
                     </plugin>
@@ -180,7 +180,7 @@
         </profile>
 
         <profile>
-            <id>parallel_app</id>
+            <id>parallel_and</id>
             <build>
                 <plugins>
                     <plugin>
@@ -188,13 +188,65 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
                             <suiteXmlFiles>
-                                <suiteXmlFile>config/app/parallel_app.xml</suiteXmlFile>
+                                <suiteXmlFile>config/app/android/parallel_and.xml</suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
                     </plugin>
                 </plugins>
             </build>
         </profile>
+
+        <profile>
+            <id>single_ios</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <suiteXmlFiles>
+                                <suiteXmlFile>config/app/ios/single_ios.xml</suiteXmlFile>
+                            </suiteXmlFiles>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>local_ios</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <suiteXmlFiles>
+                                <suiteXmlFile>config/app/ios/local_ios.xml</suiteXmlFile>
+                            </suiteXmlFiles>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>parallel_ios</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <suiteXmlFiles>
+                                <suiteXmlFile>config/app/ios/parallel_ios.xml</suiteXmlFile>
+                            </suiteXmlFiles>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
 
     </profiles>
 

@@ -5,16 +5,17 @@
 
   "capabilities": {
     "build": "BROWSERSTACK_BUILD_NAME",
-    "project": "BrowserStack demo - App",
-    "name": "single_test",
+    "project": "BrowserStack demo - App Android",
+    "name": "local_test",
     "browserstack.debug": "true",
     "browserstack.networkLogs": "true",
-    "app": "bs://72ac75bf8a391aed7d11d4a512ba43d0495ac3ec"
+    "app": "BROWSERSTACK_APP_ID",
+    "browserstack.local": "true"
   },
 
   "environments": {
-    "samsung": {
-      "device": "Samsung Galaxy S20"
+    "google": {
+      "device": "Google Pixel 4"
     }
   }
 }

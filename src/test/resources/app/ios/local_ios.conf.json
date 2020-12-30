@@ -5,17 +5,17 @@
 
   "capabilities": {
     "build": "BROWSERSTACK_BUILD_NAME",
-    "project": "BrowserStack demo - App",
+    "project": "BrowserStack demo - App IOS",
     "name": "local_test",
     "browserstack.debug": "true",
     "browserstack.networkLogs": "true",
-    "app": "bs://2fa6cbd13d67e45e876d11395d741c8a63e9e452",
+    "app": "BROWSERSTACK_APP_ID",
     "browserstack.local": "true"
   },
 
   "environments": {
-    "google": {
-      "device": "Google Pixel 4"
+    "iOS1": {
+      "device": "iPhone 8"
     }
   }
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Parallel" thread-count="3" parallel="tests">
+    <test name="SingleTestIOS1">
+        <parameter name="config" value="parallel_ios.conf.json"/>
+        <parameter name="environment" value="iOS1"/>
+        <classes>
+            <class name="app.ios.SingleIOS"/>
+        </classes>
+    </test>
+
+    <test name="SingleTestIOS2">
+        <parameter name="config" value="parallel_ios.conf.json"/>
+        <parameter name="environment" value="iOS2"/>
+        <classes>
+            <class name="app.ios.SingleIOS"/>
+        </classes>
+    </test>
+
+    <test name="SingleTestIOS3">
+        <parameter name="config" value="parallel_ios.conf.json"/>
+        <parameter name="environment" value="iOS3"/>
+        <classes>
+            <class name="app.ios.SingleIOS"/>
+        </classes>
+    </test>
+</suite>

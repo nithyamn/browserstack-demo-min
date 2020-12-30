@@ -1,0 +1,21 @@
+{
+  "server": "hub-cloud.browserstack.com",
+  "user": "BROWSERSTACK_USERNAME",
+  "key": "BROWSERSTACK_ACCESS_KEY",
+
+  "capabilities": {
+    "build": "BROWSERSTACK_BUILD_NAME",
+    "project": "BrowserStack demo - App IOS",
+    "name": "single_test",
+    "browserstack.debug": "true",
+    "browserstack.networkLogs": "true",
+    "app": "BROWSERSTACK_APP_ID"
+  },
+
+  "environments": {
+    "iOS1": {
+      "device": "iPhone 11"
+    }
+  }
+}
+

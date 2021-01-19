@@ -3,6 +3,7 @@ package web;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.Test;
 
 import java.net.URL;
 
@@ -12,7 +13,8 @@ public class ReqDebugger{
     //public static final String URL = "http://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
     public static final String URL = "http://" + USERNAME + ":" + AUTOMATE_KEY + "@localhost:9688/wd/hub";
 
-    public static void main(String[] args) throws Exception {
+    @Test
+    public static void test() throws Exception {
         //System.setProperty("webdriver.chrome.driver", "/Users/nithyamani/Desktop/chromedrivers/chromedriver80");
         //System.getProperties().put("http.proxyHost", "localhost");
         //System.getProperties().put("http.proxyPort", "9687");

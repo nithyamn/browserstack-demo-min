@@ -76,8 +76,6 @@ public class BrowserStackWebRunner {
             bsLocal = new Local();
             HashMap<String, String> bsLocalArgs = new HashMap<String, String>();
             bsLocalArgs.put("key", accessKey);
-            bsLocalArgs.put("forcelocal", "true");
-            bsLocalArgs.put("v", "true");
             bsLocal.start(bsLocalArgs);
             System.out.println(bsLocal.isRunning());
         }*/

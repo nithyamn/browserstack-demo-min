@@ -1,5 +1,5 @@
 {
-  "server": "hub-cloud.browserstack.com",
+  "server": "localhost:9688/wd/hub",
   "user": "BROWSERSTACK_USERNAME",
   "key": "BROWSERSTACK_ACCESS_KEY",
 

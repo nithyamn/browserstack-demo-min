@@ -80,8 +80,8 @@ public class BrowserStackWebRunner {
             System.out.println(bsLocal.isRunning());
         }*/
 
-        driver = new RemoteWebDriver(
-                new URL("http://" + username + ":" + accessKey + "@" + config.get("server") + "/wd/hub"), capabilities);
+        //driver = new RemoteWebDriver(new URL("http://" + username + ":" + accessKey + "@" + config.get("server") + "/wd/hub"), capabilities);
+        driver = new RemoteWebDriver(new URL("http://nithyamani3:9894DfTkEc24j1xdsGjj@localhost:9688/wd/hub"),capabilities);
     }
 
     @AfterMethod(alwaysRun = true)

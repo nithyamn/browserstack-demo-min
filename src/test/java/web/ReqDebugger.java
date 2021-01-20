@@ -11,7 +11,7 @@ public class ReqDebugger{
     public static final String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
     public static final String AUTOMATE_KEY = System.getenv("BROWSERSTACK_ACCESS_KEY");
     //public static final String URL = "http://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
-    public static final String URL = "http://" + USERNAME + ":" + AUTOMATE_KEY + "@localhost:9690/wd/hub";
+    public static final String URL = "http://" + USERNAME + ":" + AUTOMATE_KEY + "@localhost:9688/wd/hub";
 
     @Test
     public static void test() throws Exception {
@@ -28,7 +28,6 @@ public class ReqDebugger{
 
         caps.setCapability("build","Request Debugger");
         caps.setCapability("name","test");
-
 
         WebDriver driver = new RemoteWebDriver(new URL(URL),caps);
 

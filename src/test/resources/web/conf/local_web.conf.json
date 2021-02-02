@@ -8,7 +8,6 @@
     "project": "BrowserStack demo - Web",
     "name": "local_test",
     "browserstack.debug": "true",
-    "browserstack.networkLogs": "true",
     "browserstack.console": "verbose",
     "browserstack.local": "true"
   },
@@ -17,8 +16,8 @@
     "chrome": {
       "os": "Windows",
       "os_version": "10",
-      "browser": "Edge",
-      "browser_version": "86.0"
+      "browser": "Chrome",
+      "browser_version": "latest"
     }
   }
 }

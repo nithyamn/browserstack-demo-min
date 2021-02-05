@@ -76,6 +76,7 @@ public class BrowserStackWebRunner {
         }
 
         driver = new RemoteWebDriver(new URL("https://"+username+":"+accessKey+"@"+config.get("server")+"/wd/hub"), capabilities);
+        //driver = new RemoteWebDriver(new URL("https://"+username+":"+accessKey+"@"+"localhost:9688/wd/hub"), capabilities); //Request Debugger Reverse proxy
     }
 
     @AfterMethod(alwaysRun=true)

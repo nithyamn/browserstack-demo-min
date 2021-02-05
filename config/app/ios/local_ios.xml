@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Local">
+    <parameter name="local" value="yes"></parameter>
     <test name="LocalIOS">
         <parameter name="config" value="local_ios.conf.json"/>
         <parameter name="environment" value="iOS1"/>

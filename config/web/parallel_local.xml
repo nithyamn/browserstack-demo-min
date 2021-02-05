@@ -1,43 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Parallel" thread-count="5" parallel="tests">
-    <parameter name="local" value="no"></parameter>
+
+    <parameter name="local" value="yes"></parameter>
     <test name="SinglestChrome">
-        <parameter name="config" value="parallel_web.conf.json"/>
+        <parameter name="config" value="parallel_local.conf.json"/>
         <parameter name="environment" value="chrome"/>
         <classes>
-            <class name="web.SingleWeb"/>
+            <class name="web.LocalWeb"/>
         </classes>
     </test>
 
     <test name="SingleTestFirefox">
-        <parameter name="config" value="parallel_web.conf.json"/>
+        <parameter name="config" value="parallel_local.conf.json"/>
         <parameter name="environment" value="firefox"/>
         <classes>
-            <class name="web.SingleWeb"/>
+            <class name="web.LocalWeb"/>
         </classes>
     </test>
 
     <test name="SingleTestSafari">
-        <parameter name="config" value="parallel_web.conf.json"/>
+        <parameter name="config" value="parallel_local.conf.json"/>
         <parameter name="environment" value="safari"/>
         <classes>
-            <class name="web.SingleWeb"/>
+            <class name="web.LocalWeb"/>
         </classes>
     </test>
 
     <test name="SingleTestAndroid">
-        <parameter name="config" value="parallel_web.conf.json"/>
+        <parameter name="config" value="parallel_local.conf.json"/>
         <parameter name="environment" value="android"/>
         <classes>
-            <class name="web.SingleWeb"/>
+            <class name="web.LocalWeb"/>
         </classes>
     </test>
     <test name="SingleTestIphone">
-        <parameter name="config" value="parallel_web.conf.json"/>
+        <parameter name="config" value="parallel_local.conf.json"/>
         <parameter name="environment" value="iphone"/>
         <classes>
-            <class name="web.SingleWeb"/>
+            <class name="web.LocalWeb"/>
         </classes>
     </test>
 </suite>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Local">
+    <parameter name="local" value="yes"></parameter>
     <test name="LocalAndroid">
         <parameter name="config" value="local_and.conf.json"/>
         <parameter name="environment" value="google"/>

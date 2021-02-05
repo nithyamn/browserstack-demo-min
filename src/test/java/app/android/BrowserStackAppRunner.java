@@ -6,20 +6,36 @@ import io.appium.java_client.android.AndroidElement;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.*;
 
 import java.io.FileReader;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
 public class BrowserStackAppRunner {
     public AndroidDriver<AndroidElement> driver;
     private Local l;
-    public String username;
-    public String accessKey;
+
+    public static String username = System.getenv("BROWSERSTACK_USERNAME");
+    public static String accessKey = System.getenv("BROWSERSTACK_ACCESS_KEY");
+
     public String buildName;
+
+    @BeforeSuite
+    @Parameters({"local"}) //set to "yes" in XML file(s) if you want to use local testing via code bindings
+    public void startLocal(String local) throws Exception {
+        if(local.equals("yes")){
+            System.out.println("Starting Local");
+            l = new Local();
+            Map<String, String> options = new HashMap<String, String>();
+            options.put("key", accessKey);
+            l.start(options);
+            System.out.println("isRunning: "+l.isRunning());
+
+        }
+    }
     @BeforeMethod(alwaysRun=true)
     @org.testng.annotations.Parameters(value={"config", "environment"})
     public void setUp(String config_file, String environment) throws Exception {
@@ -53,12 +69,10 @@ public class BrowserStackAppRunner {
         }
 
 
-        username = System.getenv("BROWSERSTACK_USERNAME");
         if(username == null) {
             username = (String) config.get("user");
         }
 
-        accessKey = System.getenv("BROWSERSTACK_ACCESS_KEY");
         if(accessKey == null) {
             accessKey = (String) config.get("key");
         }
@@ -68,20 +82,20 @@ public class BrowserStackAppRunner {
             capabilities.setCapability("app", app);
         }
 
-        /*if(capabilities.getCapability("browserstack.local") != null && capabilities.getCapability("browserstack.local") == "true"){
-            l = new Local();
-            Map<String, String> options = new HashMap<String, String>();
-            options.put("key", accessKey);
-            l.start(options);
-        }*/
-
         driver = new AndroidDriver(new URL("http://"+username+":"+accessKey+"@"+config.get("server")+"/wd/hub"), capabilities);
     }
 
     @AfterMethod(alwaysRun=true)
     public void tearDown() throws Exception {
-
         driver.quit();
-        /*if(l != null) l.stop();*/
     }
+    @AfterSuite
+    @Parameters({"local"})
+    public void stopLocal(String local) throws Exception {
+        if(local.equals("yes")) {
+            l.stop();
+            System.out.println("Stopping Local");
+        }
+    }
+
 }

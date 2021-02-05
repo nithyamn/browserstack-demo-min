@@ -28,7 +28,7 @@ public class SingleApp extends BrowserStackAppRunner{
         Thread.sleep(5000);
 
         List<AndroidElement> allProductsName = driver.findElementsByClassName("android.widget.TextView");
-        Assert.assertTrue(allProductsName.size() > 0);
+        //Assert.assertTrue(allProductsName.size() > 0);
 
         JavascriptExecutor jse = (JavascriptExecutor)driver;
         if(allProductsName.size() > 0) {

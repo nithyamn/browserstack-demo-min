@@ -52,6 +52,8 @@ public class BrowserStackWebRunner {
         }
 
         capabilities.setCapability("build", System.getenv("BUILD_NUMBER"));
+        capabilities.setCapability("name", "parallel_test "+System.getenv("BUILD_NUMBER"));
+
 
         Map<String, String> envCapabilities = (Map<String, String>) envs.get(environment);
         Iterator it = envCapabilities.entrySet().iterator();

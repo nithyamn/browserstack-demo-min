@@ -1,1 +1,0 @@
-start /d "src/test/java/" BrowserStackLocal.exe

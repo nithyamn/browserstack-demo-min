@@ -20,14 +20,14 @@ class SingleWeb extends BrowserStackWebRunner {
         String title = driver.getTitle();
 
         JavascriptExecutor jse = (JavascriptExecutor)driver;
-        if(title.contains("BrowserStack - Google Search")) {
+        if(title.contains("BrowserStack - Google Search1")) {
             jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\", \"reason\": \"Expected Result\"}}");
         }
         else{
             //JiraIntegration.createJira(sessionId);
             jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"failed\", \"reason\": \"Unexpected Result\"}}");
         }
-        String data = JiraIntegration.sessionData(sessionId);
+        String data = GetSessionDetails.sessionData(sessionId);
         System.out.println(data);
     }
 }

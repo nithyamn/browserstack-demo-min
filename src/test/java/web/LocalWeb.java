@@ -25,7 +25,7 @@ public class LocalWeb extends BrowserStackWebRunner {
         else{
             jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"failed\", \"reason\": \"Unexpected Result\"}}");
         }
-        String data = JiraIntegration.sessionData(sessionId);
+        String data = GetSessionDetails.sessionData(sessionId);
         System.out.println(data);
     }
 }

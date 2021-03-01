@@ -22,7 +22,7 @@ import java.net.URL;
 import java.util.Base64;
 
 public class JiraIntegration {
-    public static String buildName="";
+
     public static void createJira(SessionId sessionId) {
         try {
             String jiraURL = System.getenv("JIRA_URL"); //e.g. something.atlassian.net
@@ -59,7 +59,8 @@ public class JiraIntegration {
 
     private static String getJSON_Body(SessionId sessionId) throws Exception {
 
-        String desc = sessionData(sessionId);
+        String desc = GetSessionDetails.sessionData(sessionId);
+        String buildName=GetSessionDetails.buildName;
         String summary = "Issue in build :"+buildName;
         JsonObject createIssue = Json.createObjectBuilder()
                 .add("fields",
@@ -72,36 +73,5 @@ public class JiraIntegration {
                 ).build();
 
         return createIssue.toString();
-    }
-    public static String sessionData(SessionId sessionId) throws Exception{
-        String username = BrowserStackWebRunner.username;
-        String accesskey = BrowserStackWebRunner.accessKey;
-
-        URI uri = new URI("https://"+username+":"+accesskey+"@api.browserstack.com/automate/sessions/"+sessionId+".json"); //App Automate
-        String emailData = "\n***** Session Data *****";
-        HttpGet getRequest = new HttpGet(uri);
-        CloseableHttpClient httpclient = HttpClients.createDefault();
-        HttpResponse httpresponse = httpclient.execute(getRequest);
-
-        String jsonResponseData = EntityUtils.toString(httpresponse.getEntity());
-        String trimResposneData = jsonResponseData.substring(22, jsonResponseData.length()-1);
-
-        JSONParser parser = new JSONParser();
-        JSONObject bsSessionData = (JSONObject) parser.parse(trimResposneData);
-        buildName = (String) bsSessionData.get("build_name");
-        //status = (String)bsSessionData.get("status");
-        emailData += "\n\nName: "+bsSessionData.get("name")
-                +"\nBuild: "+bsSessionData.get("build_name")
-                +"\nProject: "+bsSessionData.get("project_name")
-                +"\nDevice: "+bsSessionData.get("device")
-                +"\nOS: "+bsSessionData.get("os")
-                +"\nOS Version: "+bsSessionData.get("os_version")
-                +"\nBrowser: "+bsSessionData.get("browser")
-                +"\nBrowser Version: "+bsSessionData.get("browser_version")
-                +"\nStatus: "+bsSessionData.get("status")
-                +"\nReason: "+bsSessionData.get("reason")
-                +"\nPublic Session URL: "+bsSessionData.get("public_url");
-
-        return emailData;
     }
 }

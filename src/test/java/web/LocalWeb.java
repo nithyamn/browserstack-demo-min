@@ -3,6 +3,8 @@ package web;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.remote.SessionId;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 
@@ -10,6 +12,9 @@ public class LocalWeb extends BrowserStackWebRunner {
 
     @Test
     public void test() throws Exception {
+
+        SessionId sessionId = ((RemoteWebDriver)driver).getSessionId();
+
         driver.get("http://bs-local.com:45691/check");
 
         JavascriptExecutor jse = (JavascriptExecutor)driver;
@@ -20,6 +25,7 @@ public class LocalWeb extends BrowserStackWebRunner {
         else{
             jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"failed\", \"reason\": \"Unexpected Result\"}}");
         }
-
+        String data = JiraIntegration.sessionData(sessionId);
+        System.out.println(data);
     }
 }

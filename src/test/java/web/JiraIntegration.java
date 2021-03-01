@@ -78,7 +78,7 @@ public class JiraIntegration {
         String accesskey = BrowserStackWebRunner.accessKey;
 
         URI uri = new URI("https://"+username+":"+accesskey+"@api.browserstack.com/automate/sessions/"+sessionId+".json"); //App Automate
-        String emailData = "***** Session Data *****";
+        String emailData = "\n***** Session Data *****";
         HttpGet getRequest = new HttpGet(uri);
         CloseableHttpClient httpclient = HttpClients.createDefault();
         HttpResponse httpresponse = httpclient.execute(getRequest);

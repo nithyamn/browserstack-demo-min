@@ -73,12 +73,12 @@ public class JiraIntegration {
 
         return createIssue.toString();
     }
-    private static String sessionData(SessionId sessionId) throws Exception{
+    public static String sessionData(SessionId sessionId) throws Exception{
         String username = BrowserStackWebRunner.username;
         String accesskey = BrowserStackWebRunner.accessKey;
 
         URI uri = new URI("https://"+username+":"+accesskey+"@api.browserstack.com/automate/sessions/"+sessionId+".json"); //App Automate
-        String emailData = "";
+        String emailData = "***** Session Data *****";
         HttpGet getRequest = new HttpGet(uri);
         CloseableHttpClient httpclient = HttpClients.createDefault();
         HttpResponse httpresponse = httpclient.execute(getRequest);
@@ -90,7 +90,7 @@ public class JiraIntegration {
         JSONObject bsSessionData = (JSONObject) parser.parse(trimResposneData);
         buildName = (String) bsSessionData.get("build_name");
         //status = (String)bsSessionData.get("status");
-        emailData = "\nName: "+bsSessionData.get("name")
+        emailData += "\n\nName: "+bsSessionData.get("name")
                 +"\nBuild: "+bsSessionData.get("build_name")
                 +"\nProject: "+bsSessionData.get("project_name")
                 +"\nDevice: "+bsSessionData.get("device")

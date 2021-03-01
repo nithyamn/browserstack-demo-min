@@ -24,8 +24,10 @@ class SingleWeb extends BrowserStackWebRunner {
             jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\", \"reason\": \"Expected Result\"}}");
         }
         else{
-            JiraIntegration.createJira(sessionId);
+            //JiraIntegration.createJira(sessionId);
             jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"failed\", \"reason\": \"Unexpected Result\"}}");
         }
+        String data = JiraIntegration.sessionData(sessionId);
+        System.out.println(data);
     }
 }

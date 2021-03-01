@@ -17,7 +17,7 @@ public class GetSessionDetails {
         String username = BrowserStackWebRunner.username;
         String accesskey = BrowserStackWebRunner.accessKey;
 
-        URI uri = new URI("https://"+username+":"+accesskey+"@api.browserstack.com/automate/sessions/"+sessionId+".json"); //App Automate
+        URI uri = new URI("https://"+username+":"+accesskey+"@api.browserstack.com/automate/sessions/"+sessionId+".json"); //Automate
         String emailData = "***** Session Data *****";
         HttpGet getRequest = new HttpGet(uri);
         CloseableHttpClient httpclient = HttpClients.createDefault();

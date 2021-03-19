@@ -16,9 +16,6 @@ jobs:
 
       - name: 'Checkout the repository'
         uses: actions/checkout@v2
-
-      - name: 'Install maven dependencies'
-        run: mvn install
         
       - name: 'Run test on BrowserStack'
         run: mvn test -P single_web

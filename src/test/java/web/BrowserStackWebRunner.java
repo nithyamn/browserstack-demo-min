@@ -17,6 +17,7 @@ public class BrowserStackWebRunner {
     public Local l;
     public String buildName;
     public WebDriver driver;
+    public DesiredCapabilities capabilities;
 
     public static String username = System.getenv("BROWSERSTACK_USERNAME");
     public static String accessKey = System.getenv("BROWSERSTACK_ACCESS_KEY");
@@ -42,7 +43,7 @@ public class BrowserStackWebRunner {
         JSONObject config = (JSONObject) parser.parse(new FileReader("src/test/resources/web/conf/" + config_file));
         JSONObject envs = (JSONObject) config.get("environments");
 
-        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities = new DesiredCapabilities();
 
         buildName  =((Map<String, String>) config.get("capabilities")).get("build");
         //System.out.println(buildName);

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Parallel" thread-count="5" parallel="tests">
+<suite name="Parallel" thread-count="10" parallel="tests">
 
     <parameter name="local" value="yes"></parameter>
     <test name="SinglestChrome">
@@ -35,6 +35,44 @@
         </classes>
     </test>
     <test name="SingleTestIphone">
+        <parameter name="config" value="parallel_local.conf.json"/>
+        <parameter name="environment" value="iphone"/>
+        <classes>
+            <class name="web.LocalWeb"/>
+        </classes>
+    </test>
+    <test name="SinglestChrome2">
+        <parameter name="config" value="parallel_local.conf.json"/>
+        <parameter name="environment" value="chrome"/>
+        <classes>
+            <class name="web.LocalWeb"/>
+        </classes>
+    </test>
+
+    <test name="SingleTestFirefox2">
+        <parameter name="config" value="parallel_local.conf.json"/>
+        <parameter name="environment" value="firefox"/>
+        <classes>
+            <class name="web.LocalWeb"/>
+        </classes>
+    </test>
+
+    <test name="SingleTestSafari2">
+        <parameter name="config" value="parallel_local.conf.json"/>
+        <parameter name="environment" value="safari"/>
+        <classes>
+            <class name="web.LocalWeb"/>
+        </classes>
+    </test>
+
+    <test name="SingleTestAndroid2">
+        <parameter name="config" value="parallel_local.conf.json"/>
+        <parameter name="environment" value="android"/>
+        <classes>
+            <class name="web.LocalWeb"/>
+        </classes>
+    </test>
+    <test name="SingleTestIphone2">
         <parameter name="config" value="parallel_local.conf.json"/>
         <parameter name="environment" value="iphone"/>
         <classes>

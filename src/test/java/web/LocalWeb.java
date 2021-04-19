@@ -9,23 +9,26 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 
 public class LocalWeb extends BrowserStackWebRunner {
+    String platform;
 
     @Test
     public void test() throws Exception {
 
         SessionId sessionId = ((RemoteWebDriver)driver).getSessionId();
 
-        driver.get("http://bs-local.com:45691/check");
+        driver.get("http://bs-local.com/SampleWebsite");
+
 
         JavascriptExecutor jse = (JavascriptExecutor)driver;
-        String content = driver.findElement(By.xpath("/html/body")).getText();
-        if(content.contains("This is an internal server for BrowserStack Local")) {
+        //String content = driver.findElement(By.xpath("/html/body")).getText();
+        // content.contains("Percy - About Us")
+        if(driver.getTitle().equals("Percy - About Us")) {
             jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\", \"reason\": \"Expected Result\"}}");
         }
         else{
             jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"failed\", \"reason\": \"Unexpected Result\"}}");
         }
         String data = GetSessionDetails.sessionData(sessionId);
-        System.out.println(data);
+        //System.out.println(data);
     }
 }

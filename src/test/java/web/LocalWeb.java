@@ -9,12 +9,13 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 
 public class LocalWeb extends BrowserStackWebRunner {
-    String platform;
+
 
     @Test
     public void test() throws Exception {
 
         SessionId sessionId = ((RemoteWebDriver)driver).getSessionId();
+        System.out.println(GetSessionDetails.isLocalRunning());
 
         driver.get("http://bs-local.com/SampleWebsite");
 
@@ -28,7 +29,7 @@ public class LocalWeb extends BrowserStackWebRunner {
         else{
             jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"failed\", \"reason\": \"Unexpected Result\"}}");
         }
-        String data = GetSessionDetails.sessionData(sessionId);
+        //String data = GetSessionDetails.sessionData(sessionId);
         //System.out.println(data);
     }
 }

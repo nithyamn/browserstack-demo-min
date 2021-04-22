@@ -27,7 +27,7 @@ public class LocalWeb extends BrowserStackWebRunner {
         JavascriptExecutor jse = (JavascriptExecutor)driver;
         String content = driver.findElement(By.xpath("/html/body")).getText();
         // content.contains("Percy - About Us")
-        if(content.contains("Up and running")) {
+        if(content.contains("Up and running") || content.contains("This is an internal server for BrowserStack Local")) {
             jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\", \"reason\": \"Expected Result\"}}");
         }
         else{

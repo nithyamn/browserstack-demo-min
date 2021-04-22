@@ -9,7 +9,6 @@
     "name": "parallel_test",
     "browserstack.debug": "true",
     "browserstack.local": "true",
-    "browserstack.localIdentifier": "sample",
     "browserstack.console": "verbose"
   },
 

@@ -8,6 +8,11 @@ import org.openqa.selenium.remote.SessionId;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+
 public class LocalWeb extends BrowserStackWebRunner {
 
 
@@ -17,13 +22,12 @@ public class LocalWeb extends BrowserStackWebRunner {
         SessionId sessionId = ((RemoteWebDriver)driver).getSessionId();
         System.out.println(GetSessionDetails.isLocalRunning());
 
-        driver.get("http://bs-local.com/SampleWebsite");
-
+        driver.get("http://bs-local.com:45691/check");
 
         JavascriptExecutor jse = (JavascriptExecutor)driver;
-        //String content = driver.findElement(By.xpath("/html/body")).getText();
+        String content = driver.findElement(By.xpath("/html/body")).getText();
         // content.contains("Percy - About Us")
-        if(driver.getTitle().equals("Percy - About Us")) {
+        if(content.contains("Up and running")) {
             jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\", \"reason\": \"Expected Result\"}}");
         }
         else{

@@ -5,6 +5,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.openqa.selenium.remote.SessionId;
@@ -60,8 +61,14 @@ public class GetSessionDetails {
         JSONParser parser = new JSONParser();
         JSONObject bsLocalData = (JSONObject) parser.parse(jsonResponseData);
 
-        printLocalData += "Local meta data: "+bsLocalData.get("meta_data");
-        //"ID: "+bsLocalData.get("id").toString()+"\n State: "+bsLocalData.get("state").toString()+"\n Last: "+bsLocalData.get("last").toString();
+        JSONArray array = new JSONArray(bsLocalData.get("instances").toString());
+
+        System.out.println("**** Local Testing Data ****");
+
+        for(int i=0;i<array.length();i++){
+            org.json.JSONObject jsonObject = array.getJSONObject(i);
+            printLocalData += "\nID: "+jsonObject.get("id")+" | Local identifier: "+jsonObject.get("localIdentifier")+" | Last Active on: "+jsonObject.get("lastActiveOn");
+        }
         return printLocalData;
     }
 }

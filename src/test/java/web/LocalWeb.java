@@ -22,7 +22,7 @@ public class LocalWeb extends BrowserStackWebRunner {
         SessionId sessionId = ((RemoteWebDriver)driver).getSessionId();
         System.out.println(GetSessionDetails.isLocalRunning());
 
-        driver.get("http://bs-local.com:45691/check");
+        driver.get("http://localhost:45691/check");
 
         JavascriptExecutor jse = (JavascriptExecutor)driver;
         String content = driver.findElement(By.xpath("/html/body")).getText();

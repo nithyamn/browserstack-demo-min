@@ -21,6 +21,9 @@
     },
     "oneplus": {
       "device": "OnePlus 8"
+    },
+    "huawei": {
+      "device": "Huawei P30"
     }
   }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Parallel" thread-count="3" parallel="tests">
+<suite name="Parallel" thread-count="4" parallel="tests">
     <parameter name="local" value="no"></parameter>
     <test name="SingleTestGoogle">
         <parameter name="config" value="parallel_and.conf.json"/>
@@ -21,6 +21,13 @@
     <test name="SingleTestOnePlus">
         <parameter name="config" value="parallel_and.conf.json"/>
         <parameter name="environment" value="oneplus"/>
+        <classes>
+            <class name="app.android.SingleApp"/>
+        </classes>
+    </test>
+    <test name="SingleTestHuawei">
+        <parameter name="config" value="parallel_and.conf.json"/>
+        <parameter name="environment" value="huawei"/>
         <classes>
             <class name="app.android.SingleApp"/>
         </classes>

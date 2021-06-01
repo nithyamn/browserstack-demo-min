@@ -9,6 +9,7 @@
     "name": "local_test",
     "browserstack.debug": "true",
     "browserstack.console": "verbose",
+    "browserstack.networkLogs": "true",
     "browserstack.local": "true"
   },
 

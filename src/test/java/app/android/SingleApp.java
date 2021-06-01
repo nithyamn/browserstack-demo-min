@@ -2,13 +2,17 @@ package app.android;
 
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.JavascriptExecutor;
+import io.appium.java_client.TouchAction;
+import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.remote.SessionId;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class SingleApp extends BrowserStackAppRunner{

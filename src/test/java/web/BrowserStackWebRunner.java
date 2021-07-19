@@ -28,6 +28,7 @@ public class BrowserStackWebRunner {
     public Capabilities platformCaps;
     public static String username = System.getenv("BROWSERSTACK_USERNAME");
     public static String accessKey = System.getenv("BROWSERSTACK_ACCESS_KEY");
+    public static String localIdentifier = System.getenv("BROWSERSTACK_LOCAL_IDENTIFIER");
 
     @BeforeSuite
     @Parameters({"local"}) //set to "yes" in XML file(s) if you want to use local testing via code bindings
@@ -58,6 +59,12 @@ public class BrowserStackWebRunner {
             buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
             capabilities.setCapability("build",buildName);
         }
+
+        if (localIdentifier!= null && !localIdentifier.equals("")){
+            System.out.println("Local Identifier: "+localIdentifier);
+            capabilities.setCapability("browserstack.localIdentifier",localIdentifier);
+        }
+
         //capabilities.setCapability("name",buildName);
 
         //capabilities.setCapability("build", System.getenv("BUILD_NUMBER"));

@@ -20,6 +20,8 @@ public class BrowserStackAppRunner {
 
     public static String username = System.getenv("BROWSERSTACK_USERNAME");
     public static String accessKey = System.getenv("BROWSERSTACK_ACCESS_KEY");
+    public static String localIdentifier = System.getenv("BROWSERSTACK_LOCAL_IDENTIFIER");
+
 
     public String buildName;
 
@@ -50,6 +52,10 @@ public class BrowserStackAppRunner {
         if(buildName.equals("BROWSERSTACK_BUILD_NAME")){
             buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
             capabilities.setCapability("build",buildName);
+        }
+        if (localIdentifier!= null && !localIdentifier.equals("")){
+            System.out.println("Local Identifier: "+localIdentifier);
+            capabilities.setCapability("browserstack.localIdentifier",localIdentifier);
         }
 
         Map<String, String> envCapabilities = (Map<String, String>) envs.get(environment);

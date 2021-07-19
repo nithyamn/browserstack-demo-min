@@ -25,7 +25,7 @@ public class BrowserStackIOSRunner {
     @BeforeSuite
     @Parameters({"local"}) //set to "yes" in XML file(s) if you want to use local testing via code bindings
     public void startLocal(String local) throws Exception {
-        if(local.equals("yes")){
+        /*if(local.equals("yes")){
             System.out.println("Starting Local");
             l = new Local();
             Map<String, String> options = new HashMap<String, String>();
@@ -33,7 +33,7 @@ public class BrowserStackIOSRunner {
             l.start(options);
             System.out.println("isRunning: "+l.isRunning());
 
-        }
+        }*/
     }
 
     @BeforeMethod(alwaysRun=true)
@@ -93,9 +93,9 @@ public class BrowserStackIOSRunner {
     @AfterSuite
     @Parameters({"local"})
     public void stopLocal(String local) throws Exception {
-        if(local.equals("yes")) {
+        /*if(local.equals("yes")) {
             l.stop();
             System.out.println("Stopping Local");
-        }
+        }*/
     }
 }

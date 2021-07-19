@@ -1,13 +1,19 @@
 package web;
 import com.browserstack.local.Local;
+import io.appium.java_client.AppiumDriver;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.HasCapabilities;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.*;
 
 import java.io.FileReader;
+import java.net.Authenticator;
+import java.net.PasswordAuthentication;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -17,8 +23,9 @@ public class BrowserStackWebRunner {
     public Local l;
     public String buildName;
     public WebDriver driver;
+    public AppiumDriver<WebElement> appium_driver;
     public DesiredCapabilities capabilities;
-
+    public Capabilities platformCaps;
     public static String username = System.getenv("BROWSERSTACK_USERNAME");
     public static String accessKey = System.getenv("BROWSERSTACK_ACCESS_KEY");
 
@@ -32,7 +39,6 @@ public class BrowserStackWebRunner {
             options.put("key", accessKey);
             l.start(options);
             System.out.println("isRunning: "+l.isRunning());
-
         }*/
     }
 
@@ -44,6 +50,7 @@ public class BrowserStackWebRunner {
         JSONObject envs = (JSONObject) config.get("environments");
 
         capabilities = new DesiredCapabilities();
+        //platformCaps = ((HasCapabilities) driver).getCapabilities();
 
         buildName  =((Map<String, String>) config.get("capabilities")).get("build");
         //System.out.println(buildName);
@@ -79,7 +86,6 @@ public class BrowserStackWebRunner {
         if(accessKey == null) {
             accessKey = (String) config.get("key");
         }
-
         driver = new RemoteWebDriver(new URL("https://"+username+":"+accessKey+"@"+config.get("server")+"/wd/hub"), capabilities);
         //driver = new RemoteWebDriver(new URL("https://"+username+":"+accessKey+"@"+"localhost:9688/wd/hub"), capabilities); //Request Debugger Reverse proxy
     }

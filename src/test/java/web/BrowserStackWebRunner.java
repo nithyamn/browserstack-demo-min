@@ -58,7 +58,7 @@ public class BrowserStackWebRunner {
             buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
             capabilities.setCapability("build",buildName);
         }
-        capabilities.setCapability("name",buildName);
+        //capabilities.setCapability("name",buildName);
 
         //capabilities.setCapability("build", System.getenv("BUILD_NUMBER"));
         //capabilities.setCapability("name", "parallel_test "+System.getenv("BUILD_NUMBER"));

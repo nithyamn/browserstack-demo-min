@@ -17,7 +17,7 @@ import java.util.Map;
 public class BrowserStackIOSRunner {
     public IOSDriver<IOSElement> driver;
     private Local l;
-    public String buildName;
+    public String buildName, isLocalEnabled;
 
     public static String username = System.getenv("BROWSERSTACK_USERNAME");
     public static String accessKey = System.getenv("BROWSERSTACK_ACCESS_KEY");
@@ -52,7 +52,12 @@ public class BrowserStackIOSRunner {
             buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
             capabilities.setCapability("build",buildName);
         }
-        if (localIdentifier!= null && !localIdentifier.equals("")){
+        try{
+            isLocalEnabled = ((Map<String, String>) config.get("capabilities")).get("browserstack.local");
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        if (localIdentifier!= null && !localIdentifier.equals("") && isLocalEnabled!=null){
             System.out.println("Local Identifier: "+localIdentifier);
             capabilities.setCapability("browserstack.localIdentifier",localIdentifier);
         }

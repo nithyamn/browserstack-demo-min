@@ -21,7 +21,8 @@ public class LocalWeb extends BrowserStackWebRunner {
         /*** Fetch Session ID***/
         SessionId sessionId = ((RemoteWebDriver)driver).getSessionId();
 
-        System.out.println(GetSessionDetails.isLocalRunning());
+        /*** Print Local connection data ***/
+        //System.out.println(GetSessionDetails.isLocalRunning());
 
         driver.get("http://localhost:8888");
 
@@ -30,7 +31,7 @@ public class LocalWeb extends BrowserStackWebRunner {
         //String content = driver.findElement(By.xpath("/html/body")).getText();
         // content.contains("Percy - About Us")
         //content.contains("Up and running") || content.contains("This is an internal server for BrowserStack Local"
-        if(title.equals("BrowserStack | Local Website1")) {
+        if(title.equals("BrowserStack | Local Website")) {
             jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\", \"reason\": \"Expected Result\"}}");
         }
         else{

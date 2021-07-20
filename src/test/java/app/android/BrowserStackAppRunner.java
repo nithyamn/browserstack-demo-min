@@ -23,7 +23,7 @@ public class BrowserStackAppRunner {
     public static String localIdentifier = System.getenv("BROWSERSTACK_LOCAL_IDENTIFIER");
 
 
-    public String buildName;
+    public String buildName,isLocalEnabled;
 
     @BeforeSuite
     @Parameters({"local"}) //set to "yes" in XML file(s) if you want to use local testing via code bindings
@@ -53,10 +53,16 @@ public class BrowserStackAppRunner {
             buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
             capabilities.setCapability("build",buildName);
         }
-        if (localIdentifier!= null && !localIdentifier.equals("")){
+        try{
+            isLocalEnabled = ((Map<String, String>) config.get("capabilities")).get("browserstack.local");
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        if (localIdentifier!= null && !localIdentifier.equals("") && isLocalEnabled!=null){
             System.out.println("Local Identifier: "+localIdentifier);
             capabilities.setCapability("browserstack.localIdentifier",localIdentifier);
         }
+
 
         Map<String, String> envCapabilities = (Map<String, String>) envs.get(environment);
         Iterator it = envCapabilities.entrySet().iterator();

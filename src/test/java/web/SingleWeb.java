@@ -23,7 +23,7 @@ class SingleWeb extends BrowserStackWebRunner {
         String title = driver.getTitle();
 
         JavascriptExecutor jse = (JavascriptExecutor)driver;
-        if(title.contains("BrowserStack - Google Search 1")) {
+        if(title.contains("BrowserStack - Google Search")) {
             jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\", \"reason\": \"Expected Result\"}}");
         }
         else{

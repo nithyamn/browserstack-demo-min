@@ -14,12 +14,13 @@ import java.net.URI;
 
 public class GetSessionDetails {
     public static String buildName="";
+    public static String sessionName="";
     public static String sessionData(SessionId sessionId) throws Exception {
         String username = BrowserStackWebRunner.username;
         String accesskey = BrowserStackWebRunner.accessKey;
 
         URI uri = new URI("https://" + username + ":" + accesskey + "@api.browserstack.com/automate/sessions/" + sessionId + ".json"); //Automate
-        String emailData = "***** Session Data *****";
+        String emailData = "";
         HttpGet getRequest = new HttpGet(uri);
         CloseableHttpClient httpclient = HttpClients.createDefault();
         HttpResponse httpresponse = httpclient.execute(getRequest);
@@ -30,6 +31,7 @@ public class GetSessionDetails {
         JSONParser parser = new JSONParser();
         JSONObject bsSessionData = (JSONObject) parser.parse(trimResposneData);
         buildName = (String) bsSessionData.get("build_name");
+        sessionName = (String) bsSessionData.get("name");
         //status = (String)bsSessionData.get("status");
         emailData += "\n\nName: " + bsSessionData.get("name")
                 + "\nBuild: " + bsSessionData.get("build_name")

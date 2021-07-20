@@ -21,7 +21,7 @@ import java.util.Map;
 
 public class BrowserStackWebRunner {
     public Local l;
-    public String buildName;
+    public String buildName,isLocalEnabled;
     public WebDriver driver;
     public AppiumDriver<WebElement> appium_driver;
     public DesiredCapabilities capabilities;
@@ -59,8 +59,12 @@ public class BrowserStackWebRunner {
             buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
             capabilities.setCapability("build",buildName);
         }
-
-        if (localIdentifier!= null && !localIdentifier.equals("")){
+        try{
+            isLocalEnabled = ((Map<String, String>) config.get("capabilities")).get("browserstack.local");
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        if (localIdentifier!= null && !localIdentifier.equals("") && isLocalEnabled!=null){
             System.out.println("Local Identifier: "+localIdentifier);
             capabilities.setCapability("browserstack.localIdentifier",localIdentifier);
         }

@@ -37,9 +37,12 @@ public class JiraIntegration {
             conn.setDoInput(true);
 
             String encodedData = getJSON_Body(sessionId);
-            System.out.println(encodedData);
 
+            //System.out.println(encodedData);
+
+            System.out.println("\n**** Jira JSON Body ****");
             System.out.println(getJSON_Body(sessionId));
+
             conn.setRequestMethod("POST");
             System.out.println();
             conn.setRequestProperty("Authorization", "Basic " + Base64.getEncoder().encodeToString(jiraCreds.getBytes()));
@@ -60,8 +63,9 @@ public class JiraIntegration {
     private static String getJSON_Body(SessionId sessionId) throws Exception {
 
         String desc = GetSessionDetails.sessionData(sessionId);
-        String buildName=GetSessionDetails.buildName;
-        String summary = "Issue in build :"+buildName;
+        String buildName = GetSessionDetails.buildName;
+        String sessionName = GetSessionDetails.sessionName;
+        String summary = "Issue in Build: "+buildName+" - Session: "+sessionName;
         JsonObject createIssue = Json.createObjectBuilder()
                 .add("fields",
                         Json.createObjectBuilder().add("project",

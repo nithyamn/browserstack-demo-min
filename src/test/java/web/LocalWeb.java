@@ -18,8 +18,9 @@ public class LocalWeb extends BrowserStackWebRunner {
 
     @Test
     public void test() throws Exception {
-
+        /*** Fetch Session ID***/
         SessionId sessionId = ((RemoteWebDriver)driver).getSessionId();
+
         System.out.println(GetSessionDetails.isLocalRunning());
 
         driver.get("http://localhost:8888");
@@ -29,13 +30,19 @@ public class LocalWeb extends BrowserStackWebRunner {
         //String content = driver.findElement(By.xpath("/html/body")).getText();
         // content.contains("Percy - About Us")
         //content.contains("Up and running") || content.contains("This is an internal server for BrowserStack Local"
-        if(title.equals("BrowserStack | Local Website")) {
+        if(title.equals("BrowserStack | Local Website1")) {
             jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\", \"reason\": \"Expected Result\"}}");
         }
         else{
+
             jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"failed\", \"reason\": \"Unexpected Result\"}}");
+            /**Create a jira ticket in case of failure in test**/
+            JiraIntegration.createJira(sessionId);
         }
-//        String data = GetSessionDetails.sessionData(sessionId);
-//        System.out.println(data);
+
+        /***Get session details***/
+        System.out.println("**** Session Data ****");
+        String data = GetSessionDetails.sessionData(sessionId);
+        System.out.println(data);
     }
 }

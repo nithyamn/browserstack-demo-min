@@ -12,7 +12,9 @@ class SingleWeb extends BrowserStackWebRunner {
 
     @Test
     public void test() throws Exception {
+        /*** Fetch Session ID***/
         SessionId sessionId = ((RemoteWebDriver)driver).getSessionId();
+
         driver.get("https://www.google.com/ncr");
         WebElement element = driver.findElement(By.name("q"));
         element.sendKeys("BrowserStack");
@@ -21,12 +23,13 @@ class SingleWeb extends BrowserStackWebRunner {
         String title = driver.getTitle();
 
         JavascriptExecutor jse = (JavascriptExecutor)driver;
-        if(title.contains("BrowserStack - Google Search")) {
+        if(title.contains("BrowserStack - Google Search 1")) {
             jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\", \"reason\": \"Expected Result\"}}");
         }
         else{
-            //JiraIntegration.createJira(sessionId);
             jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"failed\", \"reason\": \"Unexpected Result\"}}");
+            /**Create a jira ticket in case of failure in test**/
+            JiraIntegration.createJira(sessionId);
         }
 
         /***Get session details***/

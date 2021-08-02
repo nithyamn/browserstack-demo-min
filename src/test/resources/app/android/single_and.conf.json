@@ -9,7 +9,7 @@
     "name": "single_test",
     "browserstack.debug": "true",
     "browserstack.networkLogs": "true",
-    "app": "bs://72ac75bf8a391aed7d11d4a512ba43d0495ac3ec"
+    "app": "BROWSERSTACK_APP_ID"
   },
 
   "environments": {

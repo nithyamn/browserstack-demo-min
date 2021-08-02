@@ -64,7 +64,7 @@ public class BrowserStackWebRunner {
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
-        if (localIdentifier!= null && !localIdentifier.equals("")){
+        if (localIdentifier!= null && !localIdentifier.equals("") && isLocalEnabled!=null){
             System.out.println("Local Identifier: "+localIdentifier);
             capabilities.setCapability("browserstack.localIdentifier",localIdentifier);
         }

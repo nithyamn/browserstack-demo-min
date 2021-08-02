@@ -57,7 +57,7 @@ public class BrowserStackIOSRunner {
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
-        if (localIdentifier!= null && !localIdentifier.equals("") && isLocalEnabled!=null){
+        if (localIdentifier!= null && !localIdentifier.equals("")){
             System.out.println("Local Identifier: "+localIdentifier);
             capabilities.setCapability("browserstack.localIdentifier",localIdentifier);
         }

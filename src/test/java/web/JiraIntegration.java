@@ -5,7 +5,6 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.openqa.selenium.remote.SessionId;
@@ -20,6 +19,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Base64;
+import org.json.JSONObject;
 
 public class JiraIntegration {
 
@@ -41,7 +41,8 @@ public class JiraIntegration {
             //System.out.println(encodedData);
 
             System.out.println("\n**** Jira JSON Body ****");
-            System.out.println(getJSON_Body(sessionId));
+            JSONObject json = new JSONObject(encodedData);
+            System.out.println(json.toString(4));
 
             conn.setRequestMethod("POST");
             System.out.println();

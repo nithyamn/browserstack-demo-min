@@ -15,15 +15,20 @@ class SingleWeb extends BrowserStackWebRunner {
         /*** Fetch Session ID***/
         SessionId sessionId = ((RemoteWebDriver)driver).getSessionId();
 
-        driver.get("https://www.google.com/ncr");
+        driver.get("https://www.google.com/");
+        try{
+            driver.findElement(By.id("L2AGLb")).click();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
         WebElement element = driver.findElement(By.name("q"));
-        element.sendKeys("Admiral group");
+        element.sendKeys("BrowserStack");
         element.submit();
         Thread.sleep(5000);
         String title = driver.getTitle();
 
         JavascriptExecutor jse = (JavascriptExecutor)driver;
-        if(title.contains("Admiral group - Google Search")) {
+        if(title.contains("BrowserStack")) {
             jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\", \"reason\": \"Expected Result\"}}");
         }
         else{
@@ -42,7 +47,12 @@ class SingleWeb extends BrowserStackWebRunner {
         /*** Fetch Session ID***/
         SessionId sessionId = ((RemoteWebDriver)driver).getSessionId();
 
-        driver.get("https://www.google.com/ncr");
+        driver.get("https://www.google.com/");
+        try{
+            driver.findElement(By.id("L2AGLb")).click();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
         WebElement element = driver.findElement(By.name("q"));
         element.sendKeys("BrowserStack");
         element.submit();
@@ -50,7 +60,7 @@ class SingleWeb extends BrowserStackWebRunner {
         String title = driver.getTitle();
 
         JavascriptExecutor jse = (JavascriptExecutor)driver;
-        if(title.contains("BrowserStack - Google Search 1")) {
+        if(title.contains("BrowserStack 1")) {
             jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\", \"reason\": \"Expected Result\"}}");
         }
         else{

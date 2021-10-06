@@ -8,18 +8,22 @@
     "project": "BrowserStack demo - Web",
     "name": "parallel_test",
     "browserstack.debug": true,
-    "browserstack.networkLogs": true,
+    "browserstack.networkLogs": false,
     "browserstack.console": "verbose"
   },
 
   "environments": {
     "chrome": {
+      "os": "Windows",
+      "os_version": "10",
       "browser": "chrome",
-      "browser_version": "latest-1"
+      "browser_version": "latest"
     },
     "firefox": {
+      "os": "Windows",
+      "os_version": "10",
       "browser": "firefox",
-      "browser_version": "latest-2"
+      "browser_version": "latest"
     },
     "safari": {
       "os": "OS X",

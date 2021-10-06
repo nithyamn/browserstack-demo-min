@@ -7,6 +7,7 @@ import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.HasCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.*;
@@ -46,11 +47,15 @@ public class BrowserStackWebRunner {
     @BeforeMethod(alwaysRun=true)
     @org.testng.annotations.Parameters(value={"config", "environment"})
     public void setUp(String config_file, String environment) throws Exception {
+        //ChromeOptions chromeOptions = new ChromeOptions();
+        //chromeOptions.addArguments("--disable-web-security");
+
         JSONParser parser = new JSONParser();
         JSONObject config = (JSONObject) parser.parse(new FileReader("src/test/resources/web/conf/" + config_file));
         JSONObject envs = (JSONObject) config.get("environments");
 
         capabilities = new DesiredCapabilities();
+        //capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
         //platformCaps = ((HasCapabilities) driver).getCapabilities();
 
         buildName  =((Map<String, String>) config.get("capabilities")).get("build");

@@ -12,6 +12,7 @@ class SingleWeb extends BrowserStackWebRunner {
 
     @Test
     public void test() throws Exception {
+
         /*** Fetch Session ID***/
         SessionId sessionId = ((RemoteWebDriver)driver).getSessionId();
 

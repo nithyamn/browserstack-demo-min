@@ -72,6 +72,7 @@ class SingleWeb extends BrowserStackWebRunner {
                     markSessionStatus(jse, "failed", "Unexpected");
                     /**Create a jira ticket in case of failure in test**/
                     JiraIntegration.createJira(sessionId);
+                    System.out.println("======================");
                 }
             }
         }catch (Exception e){

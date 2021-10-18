@@ -107,7 +107,7 @@ public class BrowserStackWebRunner {
         }
         driver = new RemoteWebDriver(new URL("https://"+username+":"+accessKey+"@"+config.get("server")+"/wd/hub"), capabilities);
         //driver = new RemoteWebDriver(new URL("https://"+username+":"+accessKey+"@"+"localhost:9688/wd/hub"), capabilities); //Request Debugger Reverse proxy
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 
     @AfterMethod(alwaysRun=true)

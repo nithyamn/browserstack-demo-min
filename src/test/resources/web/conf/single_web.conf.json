@@ -14,10 +14,10 @@
 
   "environments": {
     "chrome": {
+      "browser": "firefox",
+      "browser_version": "latest",
       "os": "Windows",
-      "os_version": "10",
-      "browser": "Chrome",
-      "browser_version": "latest"
+      "os_version":"10"
     }
   }
 }

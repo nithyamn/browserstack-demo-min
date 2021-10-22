@@ -28,15 +28,15 @@ class SingleWeb extends BrowserStackWebRunner {
 
        String title = driver.getTitle();
 
-    JavascriptExecutor jse = (JavascriptExecutor)driver;
-    if(title.contains("Easy Read information")) {
-        jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\", \"reason\": \"Expected Result\"}}");
-    }
-    else{
-        jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"failed\", \"reason\": \"Unexpected Result\"}}");
-        /**Create a jira ticket in case of failure in test**/
-        JiraIntegration.createJira(sessionId);
-    }
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        if(title.contains("BrowserStack")) {
+            jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\", \"reason\": \"Expected Result\"}}");
+        }
+        else{
+            jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"failed\", \"reason\": \"Unexpected Result\"}}");
+            /**Create a jira ticket in case of failure in test**/
+            JiraIntegration.createJira(sessionId);
+        }
 
 //        try{
 //            driver.get("https://www.johnlewis.com/");

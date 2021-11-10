@@ -38,43 +38,7 @@ class SingleWeb extends BrowserStackWebRunner {
             JiraIntegration.createJira(sessionId);
         }
 
-//        try{
-//            driver.get("https://www.johnlewis.com/");
-//            driver.findElement(By.cssSelector("button[data-test='allow-all']")).click();
-//            driver.findElement(By.id("mobileSearch")).sendKeys("apple watch",Keys.ENTER);
-//
-//            System.out.println("platform device?"+capabilities.getCapability("device"));
-//            if(capabilities.getCapability("device")==null){
-//                WebElement watchLink = driver.findElement(By.cssSelector("a[href='/browse/electricals/smart-watches-wearable-tech/view-all-smart-watches/apple-watch-series-7/_/N-5nmcZn4qe?intcmp=bc_20211015_applewatch7hybridblock_bp_ele_'].image-container-link--831b8"));
-//                jse.executeScript("return arguments[0].scrollIntoView();",watchLink);
-//                watchLink.click();
-//            }
-//
-//            String title = driver.getTitle();
-//
-//            if(capabilities.getCapability("device")==null){
-//                if(title.contains("View All Smart Watches | John Lewis & Partners")) {
-//                    markSessionStatus(jse,"passed","Expected");
-//                }
-//                else{
-//                    markSessionStatus(jse,"failed","Unexpected");
-//                    /**Create a jira ticket in case of failure in test**/
-//                    JiraIntegration.createJira(sessionId);
-//                }
-//            }else{
-//                if(title.contains("Filtered Search results for “apple watch” | John Lewis & Partners")) {
-//                    markSessionStatus(jse,"passed","Expected");
-//                }
-//                else {
-//                    markSessionStatus(jse, "failed", "Unexpected");
-//                    /**Create a jira ticket in case of failure in test**/
-//                    JiraIntegration.createJira(sessionId);
-//                }
-//            }
-//        }catch (Exception e){
-//            System.out.println("Exception: "+e);
-//            markSessionStatus(jse,"failed","Failed");
-//        }
+
         /***Get session details***/
         String data = GetSessionDetails.sessionData(sessionId);
         System.out.println(data);

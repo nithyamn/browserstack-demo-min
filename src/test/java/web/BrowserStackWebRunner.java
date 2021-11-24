@@ -61,11 +61,12 @@ public class BrowserStackWebRunner {
 
         buildName  =((Map<String, String>) config.get("capabilities")).get("build");
         //System.out.println(buildName);
-        if(buildName.equals("BROWSERSTACK_BUILD_NAME")){
-            buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
-            capabilities.setCapability("build",buildName);
-        }
-        
+//        if(buildName.equals("BROWSERSTACK_BUILD_NAME")){
+//            buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
+//            capabilities.setCapability("build",buildName);
+//        }
+        buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
+        capabilities.setCapability("build",buildName);
         try{
             isLocalEnabled = ((Map<String, String>) config.get("capabilities")).get("browserstack.local");
         }catch (Exception e){

@@ -6,11 +6,20 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
+import org.json.JSONException;
+//import org.json.JSONObject;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.openqa.selenium.remote.SessionId;
 
+import java.io.*;
+import java.net.HttpURLConnection;
 import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.charset.Charset;
+import java.util.Map;
 
 public class GetSessionDetails {
     public static String buildName="";
@@ -47,6 +56,7 @@ public class GetSessionDetails {
 
         return emailData;
     }
+
     public static String isLocalRunning() throws Exception{
         String accesskey = BrowserStackWebRunner.accessKey;
         String printLocalData = "";

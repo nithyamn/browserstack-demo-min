@@ -65,7 +65,7 @@ public class BrowserStackWebRunner {
 //            buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
 //            capabilities.setCapability("build",buildName);
 //        }
-        System.out.println("Build name: "+buildName);
+        
         buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
         capabilities.setCapability("build",buildName);
         System.out.println("Build name: "+buildName);

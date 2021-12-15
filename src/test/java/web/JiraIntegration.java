@@ -1,16 +1,7 @@
 package web;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.openqa.selenium.remote.SessionId;
 
-import java.net.URI;
-import java.net.URISyntaxException;
 
 import javax.json.Json;
 import javax.json.JsonObject;

@@ -48,7 +48,7 @@ class SingleWeb extends BrowserStackWebRunner {
         jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \""+status+"\", \"reason\": \""+reason+"\"}}");
     }
 
-    @Test
+   // @Test
     public void failedTest() throws Exception {
         /*** Fetch Session ID***/
         SessionId sessionId = ((RemoteWebDriver)driver).getSessionId();

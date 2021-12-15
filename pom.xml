@@ -182,7 +182,8 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
                             <suiteXmlFiles>
-                                <suiteXmlFile>config/web/parallel_web.xml</suiteXmlFile>
+<!--                                <suiteXmlFile>config/web/parallel_web.xml</suiteXmlFile>-->
+                                <suiteXmlFile>config/web/parallel.next.xml</suiteXmlFile>-->
                             </suiteXmlFiles>
                         </configuration>
                     </plugin>

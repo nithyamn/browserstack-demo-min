@@ -9,15 +9,13 @@
     "name": "single_test",
     "browserstack.debug": true,
     "browserstack.networkLogs": true,
-    "browserstack.console": "verbose"
+    "browserstack.console": "verbose",
+    "browserstack.geoLocation": "IN"
   },
 
   "environments": {
     "chrome": {
-      "browser": "firefox",
-      "browser_version": "latest",
-      "os": "Windows",
-      "os_version":"10"
+      "device": "Samsung Galaxy S20"
     }
   }
 }

@@ -3,13 +3,11 @@ import com.browserstack.local.Local;
 import io.appium.java_client.AppiumDriver;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.HasCapabilities;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.ITestContext;
 import org.testng.annotations.*;
 
 import java.io.FileReader;
@@ -31,7 +29,7 @@ public class BrowserStackWebRunner {
     public static String username = System.getenv("BROWSERSTACK_USERNAME");
     public static String accessKey = System.getenv("BROWSERSTACK_ACCESS_KEY");
     public static String localIdentifier = System.getenv("BROWSERSTACK_LOCAL_IDENTIFIER");
-
+    public String failedTests="";
     @BeforeSuite
     @Parameters({"local"}) //set to "yes" in XML file(s) if you want to use local testing via code bindings
     public void startLocal(String local) throws Exception {
@@ -47,81 +45,97 @@ public class BrowserStackWebRunner {
 
     @BeforeMethod(alwaysRun=true)
     @org.testng.annotations.Parameters(value={"config", "environment"})
-    public void setUp(String config_file, String environment) throws Exception {
-        //ChromeOptions chromeOptions = new ChromeOptions();
-        //chromeOptions.addArguments("--disable-web-security");
+    public void setUp(String config_file, String environment, ITestContext context) throws Exception {
+        try{
+            //ChromeOptions chromeOptions = new ChromeOptions();
+            //chromeOptions.addArguments("--disable-web-security");
 
-        JSONParser parser = new JSONParser();
-        JSONObject config = (JSONObject) parser.parse(new FileReader("src/test/resources/web/conf/" + config_file));
-        JSONObject envs = (JSONObject) config.get("environments");
+            JSONParser parser = new JSONParser();
+            JSONObject config = (JSONObject) parser.parse(new FileReader("src/test/resources/web/conf/" + config_file));
+            JSONObject envs = (JSONObject) config.get("environments");
 
-        capabilities = new DesiredCapabilities();
-        //capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
-        //platformCaps = ((HasCapabilities) driver).getCapabilities();
+            capabilities = new DesiredCapabilities();
+            //capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
+            //platformCaps = ((HasCapabilities) driver).getCapabilities();
 
-        buildName  =((Map<String, String>) config.get("capabilities")).get("build");
-        //System.out.println(buildName);
+            buildName  =((Map<String, String>) config.get("capabilities")).get("build");
+            //System.out.println(buildName);
 //        if(buildName.equals("BROWSERSTACK_BUILD_NAME")){
 //            buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
 //            capabilities.setCapability("build",buildName);
 //        }
-        
-        buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
-        capabilities.setCapability("build",buildName);
-        System.out.println("Build name: "+buildName);
 
-        try{
-            isLocalEnabled = ((Map<String, String>) config.get("capabilities")).get("browserstack.local");
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-        if (localIdentifier!= null && !localIdentifier.equals("") && isLocalEnabled!=null){
-            System.out.println("Local Identifier: "+localIdentifier);
-            capabilities.setCapability("browserstack.localIdentifier",localIdentifier);
-        }
+            buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
+            if(buildName!=null || buildName!=""){
+                capabilities.setCapability("build",buildName);
+            }
+            System.out.println("Build name: "+buildName);
 
-        //capabilities.setCapability("name",buildName);
+            try{
+                isLocalEnabled = ((Map<String, String>) config.get("capabilities")).get("browserstack.local");
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+            if (localIdentifier!= null && !localIdentifier.equals("") && isLocalEnabled!=null){
+                System.out.println("Local Identifier: "+localIdentifier);
+                capabilities.setCapability("browserstack.localIdentifier",localIdentifier);
+            }
 
-        //capabilities.setCapability("build", System.getenv("BUILD_NUMBER"));
-        //capabilities.setCapability("name", "parallel_test "+System.getenv("BUILD_NUMBER"));
+            //capabilities.setCapability("name",buildName);
+
+            //capabilities.setCapability("build", System.getenv("BUILD_NUMBER"));
+            //capabilities.setCapability("name", "parallel_test "+System.getenv("BUILD_NUMBER"));
 
 
-        Map<String, String> envCapabilities = (Map<String, String>) envs.get(environment);
-        Iterator it = envCapabilities.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry)it.next();
-            capabilities.setCapability(pair.getKey().toString(), pair.getValue().toString());
-        }
-
-        Map<String, String> commonCapabilities = (Map<String, String>) config.get("capabilities");
-        it = commonCapabilities.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry)it.next();
-            if(capabilities.getCapability(pair.getKey().toString()) == null){
+            Map<String, String> envCapabilities = (Map<String, String>) envs.get(environment);
+            Iterator it = envCapabilities.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry pair = (Map.Entry)it.next();
                 capabilities.setCapability(pair.getKey().toString(), pair.getValue().toString());
             }
-        }
 
-        if(username == null) {
-            username = (String) config.get("user");
-        }
+            Map<String, String> commonCapabilities = (Map<String, String>) config.get("capabilities");
+            it = commonCapabilities.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry pair = (Map.Entry)it.next();
+                if(capabilities.getCapability(pair.getKey().toString()) == null){
+                    capabilities.setCapability(pair.getKey().toString(), pair.getValue().toString());
+                }
+            }
 
-        if(accessKey == null) {
-            accessKey = (String) config.get("key");
+            if(username == null) {
+                username = (String) config.get("user");
+            }
+
+            if(accessKey == null) {
+                accessKey = (String) config.get("key");
+            }
+            driver = new RemoteWebDriver(new URL("https://"+username+":"+accessKey+"@"+config.get("server")+"/wd/hub"), capabilities);
+            //driver = new RemoteWebDriver(new URL("https://"+username+":"+accessKey+"@"+"localhost:9688/wd/hub"), capabilities); //Request Debugger Reverse proxy
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        }catch (WebDriverException webDriverException){
+            //System.out.println(webDriverException.getMessage());
+            if(webDriverException.getMessage().contains("All parallel tests are currently in use")){
+                System.out.println("Retry, as cant queue more.");
+                System.out.println("testname: "+context.getName());
+                failedTests+=" "+context.getName();
+            }
+            else
+                System.out.println("Some other issue. Debug.");
         }
-        driver = new RemoteWebDriver(new URL("https://"+username+":"+accessKey+"@"+config.get("server")+"/wd/hub"), capabilities);
-        //driver = new RemoteWebDriver(new URL("https://"+username+":"+accessKey+"@"+"localhost:9688/wd/hub"), capabilities); //Request Debugger Reverse proxy
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
+
 
     @AfterMethod(alwaysRun=true)
     public void tearDown() throws Exception {
+
         driver.quit();
     }
 
     @AfterSuite
     @Parameters({"local"})
     public void stopLocal(String local) throws Exception {
+        System.out.println("Failed tests are: "+failedTests);
         /*if(local.equals("yes")) {
             l.stop();
             System.out.println("Stopping Local");

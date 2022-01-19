@@ -67,11 +67,11 @@
             <artifactId>javax.json</artifactId>
             <version>1.1.4</version>
         </dependency>
-        <dependency>
-            <groupId>com.browserstack</groupId>
-            <artifactId>automate-testassist</artifactId>
-            <version>1.1.1</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.browserstack</groupId>-->
+<!--            <artifactId>automate-testassist</artifactId>-->
+<!--            <version>1.1.1</version>-->
+<!--        </dependency>-->
 
     </dependencies>
 
@@ -182,8 +182,8 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
                             <suiteXmlFiles>
-<!--                                <suiteXmlFile>config/web/parallel_web.xml</suiteXmlFile>-->
-                                <suiteXmlFile>config/web/parallel.next.xml</suiteXmlFile>-->
+                                <suiteXmlFile>config/web/parallel_web.xml</suiteXmlFile>
+<!--                                <suiteXmlFile>config/web/parallel.next.xml</suiteXmlFile>&ndash;&gt;-->
                             </suiteXmlFiles>
                         </configuration>
                     </plugin>

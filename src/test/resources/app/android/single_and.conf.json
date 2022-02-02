@@ -14,7 +14,7 @@
 
   "environments": {
     "samsung": {
-      "device": "Google Pixel 4"
+      "device": "Samsung Galaxy S10"
     }
   }
 }

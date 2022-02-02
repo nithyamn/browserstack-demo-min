@@ -24,22 +24,22 @@ public class LocalWeb extends BrowserStackWebRunner {
         /*** Print Local connection data ***/
         //System.out.println(GetSessionDetails.isLocalRunning());
 
-        //driver.get("http://localhost:8888");
-        driver.get("http://localhost:45691/check");
+        driver.get("http://localhost:8888");
+
         JavascriptExecutor jse = (JavascriptExecutor)driver;
         String title = driver.getTitle();
         //String content = driver.findElement(By.xpath("/html/body")).getText();
         // content.contains("Percy - About Us")
         //content.contains("Up and running") || content.contains("This is an internal server for BrowserStack Local"
-//        if(title.equals("BrowserStack | Local Website")) {
-//            jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\", \"reason\": \"Expected Result\"}}");
-//        }
-//        else{
-//
-//            jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"failed\", \"reason\": \"Unexpected Result\"}}");
-//            /**Create a jira ticket in case of failure in test**/
-//            JiraIntegration.createJira(sessionId);
-//        }
+        if(title.equals("BrowserStack | Local Website")) {
+            jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\", \"reason\": \"Expected Result\"}}");
+        }
+        else{
+
+            jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"failed\", \"reason\": \"Unexpected Result\"}}");
+            /**Create a jira ticket in case of failure in test**/
+            JiraIntegration.createJira(sessionId);
+        }
 
         /***Get session details***/
         System.out.println("**** Session Data ****");

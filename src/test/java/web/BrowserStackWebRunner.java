@@ -47,6 +47,10 @@ public class BrowserStackWebRunner {
     @org.testng.annotations.Parameters(value={"config", "environment"})
     public void setUp(String config_file, String environment, ITestContext context) throws Exception {
         try{
+            //Debugging Azure pipeline
+            System.out.println("SYSTEM: "+System.getenv("SYSTEM"));
+            System.out.println("BUILD_BUILDNUMBER: "+System.getenv("BUILD_BUILDNUMBER"));
+            System.out.println("BUILD_BUILDID: "+System.getenv("BUILD_BUILDID"));
             //ChromeOptions chromeOptions = new ChromeOptions();
             //chromeOptions.addArguments("--disable-web-security");
 

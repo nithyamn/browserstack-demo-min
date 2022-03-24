@@ -92,7 +92,6 @@ public class BrowserStackIOSRunner {
         if(app != null && !app.isEmpty()) {
             capabilities.setCapability("app", app);
         }
-
         driver = new IOSDriver<IOSElement>(new URL("http://"+username+":"+accessKey+"@"+config.get("server")+"/wd/hub"), capabilities);
     }
 

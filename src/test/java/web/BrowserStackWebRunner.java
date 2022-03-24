@@ -11,6 +11,7 @@ import org.testng.ITestContext;
 import org.testng.annotations.*;
 
 import java.io.FileReader;
+import java.lang.reflect.Method;
 import java.net.Authenticator;
 import java.net.PasswordAuthentication;
 import java.net.URL;
@@ -33,25 +34,29 @@ public class BrowserStackWebRunner {
     @BeforeSuite
     @Parameters({"local"}) //set to "yes" in XML file(s) if you want to use local testing via code bindings
     public void startLocal(String local) throws Exception {
-        /*if(local.equals("yes")){
-            System.out.println("Starting Local");
-            l = new Local();
-            Map<String, String> options = new HashMap<String, String>();
-            options.put("key", accessKey);
-            l.start(options);
-            System.out.println("isRunning: "+l.isRunning());
-        }*/
+//        if(local.equals("yes")){
+//            System.out.println("Starting Local");
+//            l = new Local();
+//            Map<String, String> options = new HashMap<String, String>();
+//            options.put("key", accessKey);
+//            options.put("v", "true");
+//            //options.put("logFile", "logjava.txt");
+//            l.start(options);
+//            System.out.println("isRunning: "+l.isRunning());
+//        }
     }
 
     @BeforeMethod(alwaysRun=true)
     @org.testng.annotations.Parameters(value={"config", "environment"})
-    public void setUp(String config_file, String environment, ITestContext context) throws Exception {
+    public void setUp(String config_file, String environment, ITestContext context, Method method) throws Exception {
         try{
             //Debugging Azure pipeline
-            System.out.println("SYSTEM: "+System.getenv("SYSTEM"));
-            System.out.println("BUILD_BUILDNUMBER: "+System.getenv("BUILD_BUILDNUMBER"));
-            System.out.println("BUILD_BUILDID: "+System.getenv("BUILD_BUILDID"));
+
+//            System.out.println("SYSTEM: "+System.getenv("SYSTEM"));
+//            System.out.println("BUILD_BUILDNUMBER: "+System.getenv("BUILD_BUILDNUMBER"));
+//            System.out.println("BUILD_BUILDID: "+System.getenv("BUILD_BUILDID"));
             //ChromeOptions chromeOptions = new ChromeOptions();
+
             //chromeOptions.addArguments("--disable-web-security");
 
             JSONParser parser = new JSONParser();
@@ -59,6 +64,7 @@ public class BrowserStackWebRunner {
             JSONObject envs = (JSONObject) config.get("environments");
 
             capabilities = new DesiredCapabilities();
+            capabilities.setCapability("name",method.getName());
             //capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
             //platformCaps = ((HasCapabilities) driver).getCapabilities();
 
@@ -139,10 +145,10 @@ public class BrowserStackWebRunner {
     @AfterSuite
     @Parameters({"local"})
     public void stopLocal(String local) throws Exception {
-        System.out.println("Failed tests are: "+failedTests);
-        /*if(local.equals("yes")) {
-            l.stop();
-            System.out.println("Stopping Local");
-        }*/
+//        System.out.println("Failed tests are: "+failedTests);
+//        if(local.equals("yes")) {
+//            l.stop();
+//            System.out.println("Stopping Local");
+//        }
     }
 }

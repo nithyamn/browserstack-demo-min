@@ -24,8 +24,8 @@ public class LocalWeb extends BrowserStackWebRunner {
         /*** Print Local connection data ***/
         //System.out.println(GetSessionDetails.isLocalRunning());
 
-        driver.get("http://localhost:8888");
-
+        //driver.get("http://localhost:8888");
+        driver.get("https://www.browserstack.com/");
         JavascriptExecutor jse = (JavascriptExecutor)driver;
         String title = driver.getTitle();
         //String content = driver.findElement(By.xpath("/html/body")).getText();
@@ -40,6 +40,7 @@ public class LocalWeb extends BrowserStackWebRunner {
             /**Create a jira ticket in case of failure in test**/
             JiraIntegration.createJira(sessionId);
         }
+        driver.get("https://www.google.com/");
 
         /***Get session details***/
         System.out.println("**** Session Data ****");

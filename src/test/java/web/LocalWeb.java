@@ -26,20 +26,20 @@ public class LocalWeb extends BrowserStackWebRunner {
 
         //driver.get("http://localhost:8888");
         driver.get("https://www.browserstack.com/");
-        JavascriptExecutor jse = (JavascriptExecutor)driver;
-        String title = driver.getTitle();
-        //String content = driver.findElement(By.xpath("/html/body")).getText();
-        // content.contains("Percy - About Us")
-        //content.contains("Up and running") || content.contains("This is an internal server for BrowserStack Local"
-        if(title.equals("BrowserStack | Local Website")) {
-            jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\", \"reason\": \"Expected Result\"}}");
-        }
-        else{
-
-            jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"failed\", \"reason\": \"Unexpected Result\"}}");
-            /**Create a jira ticket in case of failure in test**/
-            JiraIntegration.createJira(sessionId);
-        }
+//        JavascriptExecutor jse = (JavascriptExecutor)driver;
+//        String title = driver.getTitle();
+//        //String content = driver.findElement(By.xpath("/html/body")).getText();
+//        // content.contains("Percy - About Us")
+//        //content.contains("Up and running") || content.contains("This is an internal server for BrowserStack Local"
+//        if(title.equals("BrowserStack | Local Website")) {
+//            jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\", \"reason\": \"Expected Result\"}}");
+//        }
+//        else{
+//
+//            jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"failed\", \"reason\": \"Unexpected Result\"}}");
+//            /**Create a jira ticket in case of failure in test**/
+//            JiraIntegration.createJira(sessionId);
+//        }
         driver.get("https://www.google.com/");
 
         /***Get session details***/

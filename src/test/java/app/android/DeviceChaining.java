@@ -23,6 +23,8 @@ public class DeviceChaining {
     public String appHashedID = "wiki_app_new";//System.getenv("BROWSERSTACK_APP_ID");
     public AndroidDriver driver;
     DesiredCapabilities caps;
+    final String wikiUsername = "";
+    final String wikiPass = "";
 
     @BeforeMethod
     public void setup(Method method) throws MalformedURLException {
@@ -43,7 +45,7 @@ public class DeviceChaining {
         loginProcess();
 
         String validateUsername = driver.findElementById("org.wikipedia.alpha:id/explore_overflow_account_name").getText();
-        if (validateUsername.equals("Nithyamani1506")){
+        if (validateUsername.equals(wikiUsername)){
             markTestStatus("passed","Username validated!");
         }else{
             markTestStatus("failed","Username not validated!");
@@ -70,9 +72,9 @@ public class DeviceChaining {
     public void loginProcess(){
         driver.findElementById("org.wikipedia.alpha:id/menu_overflow_button").click();
         driver.findElementById("org.wikipedia.alpha:id/explore_overflow_account_name").click(); //android.widget.TextView//Log in to Wikipedia
-        driver.findElementById("org.wikipedia.alpha:id/login_username_text").sendKeys("Nithyamani1506");
+        driver.findElementById("org.wikipedia.alpha:id/login_username_text").sendKeys(wikiUsername);
         List<AndroidElement> password = driver.findElementsByClassName("android.widget.EditText");
-        password.get(1).sendKeys("aBC12345");
+        password.get(1).sendKeys(wikiPass);
         driver.findElementById("org.wikipedia.alpha:id/login_button").click();
         driver.findElementById("org.wikipedia.alpha:id/menu_overflow_button").click();
     }

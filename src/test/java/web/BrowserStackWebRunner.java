@@ -131,7 +131,7 @@ public class BrowserStackWebRunner {
                 failedTests+=" "+context.getName();
             }
             else
-                System.out.println("Some other issue. Debug.");
+                System.out.println("Some other issue. Debug."+webDriverException.getMessage());
         }
     }
 

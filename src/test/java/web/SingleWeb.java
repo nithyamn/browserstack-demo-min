@@ -4,11 +4,31 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.remote.SessionId;
 import org.testng.annotations.Test;
+import org.testng.Assert;
+
+import java.util.List;
 
 
 class SingleWeb extends BrowserStackWebRunner {
     public JavascriptExecutor jse;
+
     @Test
+    public void cedPageNavigation() throws Exception{
+        driver.get("https://cedcareers.com/");
+        driver.findElement(By.linkText("OPPORTUNITIES")).click();
+        driver.findElement(By.linkText("SALES")).click();
+        Assert.assertEquals(driver.getTitle(),"Opportunities | CED Careers");
+    }
+
+    @Test
+    public void cedPageNavigationFail() throws Exception{
+        driver.get("https://cedcareers.com/");
+        driver.findElement(By.linkText("Opportunities")).click();
+        driver.findElement(By.linkText("SALES")).click();
+        Assert.assertEquals(driver.getTitle(),"Story | CED Careers");
+    }
+
+    //@Test
     public void test() throws Exception {
 
         /*** Fetch Session ID***/
@@ -25,30 +45,14 @@ class SingleWeb extends BrowserStackWebRunner {
         element.sendKeys("BrowserStack");
         element.submit();
         Thread.sleep(5000);
-
-       String title = driver.getTitle();
-
-        JavascriptExecutor jse = (JavascriptExecutor)driver;
-        if(title.contains("BrowserStack")) {
-            jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\", \"reason\": \"Expected Result\"}}");
-        }
-        else{
-            jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"failed\", \"reason\": \"Unexpected Result\"}}");
-            /**Create a jira ticket in case of failure in test**/
-            JiraIntegration.createJira(sessionId);
-        }
-
+        Assert.assertEquals(driver.getTitle(),"BrowserStack - Google Search");
 
         /***Get session details***/
-        String data = GetSessionDetails.sessionData(sessionId);
-        System.out.println(data);
+        //String data = GetSessionDetails.sessionData(sessionId);
+        //System.out.println(data);
     }
 
-    public void markSessionStatus(JavascriptExecutor jse, String status, String reason){
-        jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \""+status+"\", \"reason\": \""+reason+"\"}}");
-    }
-
-    @Test
+    //@Test
     public void failedTest() throws Exception {
         /*** Fetch Session ID***/
         SessionId sessionId = ((RemoteWebDriver)driver).getSessionId();
@@ -63,17 +67,7 @@ class SingleWeb extends BrowserStackWebRunner {
         element.sendKeys("BrowserStack");
         element.submit();
         Thread.sleep(5000);
-        String title = driver.getTitle();
-
-        JavascriptExecutor jse = (JavascriptExecutor)driver;
-        if(title.contains("BrowserStack 1")) {
-            jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\", \"reason\": \"Expected Result\"}}");
-        }
-        else{
-            jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"failed\", \"reason\": \"Unexpected Result\"}}");
-            /**Create a jira ticket in case of failure in test**/
-            JiraIntegration.createJira(sessionId);
-        }
+        Assert.assertEquals(driver.getTitle(),"BrowserStack - Google Search - Wrong");
 
         /***Get session details***/
         String data = GetSessionDetails.sessionData(sessionId);

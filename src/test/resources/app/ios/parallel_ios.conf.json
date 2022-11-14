@@ -4,7 +4,7 @@
   "key": "BROWSERSTACK_ACCESS_KEY",
 
   "capabilities": {
-    "build": "BROWSERSTACK_BUILD_NAME",
+    "build": "JavaDemo",
     "project": "BrowserStack demo - App IOS",
     "name": "parallel_test",
     "browserstack.debug": "true",
@@ -14,13 +14,13 @@
 
   "environments": {
     "iOS1": {
-      "device": "iPhone 11"
+      "device": "iPhone 13"
     },
     "iOS2": {
-      "device": "iPhone XS"
+      "device": "iPhone 14"
     },
     "iOS3": {
-      "device": "iPad 7th"
+      "device": "iPad Air 5"
     }
   }
 }

@@ -4,7 +4,7 @@
   "key": "BROWSERSTACK_ACCESS_KEY",
 
   "capabilities": {
-    "build": "BROWSERSTACK_BUILD_NAME",
+    "build": "JavaDemo",
     "project": "BrowserStack demo - Web",
     "name": "local_test",
     "browserstack.debug": "true",

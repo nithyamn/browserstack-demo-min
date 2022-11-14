@@ -43,15 +43,6 @@ public class LocalApp extends BrowserStackAppRunner{
         String matchedString = testElement.getText();
         System.out.println(matchedString);
         //Assert.assertTrue(matchedString.contains("The active connection is wifi"));
-        //Assert.assertTrue(matchedString.contains("Up and running"));
-
-        JavascriptExecutor jse = (JavascriptExecutor)driver;
-        if(matchedString.contains("Up and running")) {
-            jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\", \"reason\": \"Validated\"}}");
-        }
-        else{
-            jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"failed\", \"reason\": \"Not Validated\"}}");
-        }
-
+        Assert.assertTrue(matchedString.contains("Up and running"));
     }
 }

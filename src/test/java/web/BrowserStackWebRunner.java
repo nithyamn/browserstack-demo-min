@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestContext;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 
 import java.io.FileReader;
@@ -50,37 +51,18 @@ public class BrowserStackWebRunner {
     @org.testng.annotations.Parameters(value={"config", "environment"})
     public void setUp(String config_file, String environment, ITestContext context, Method method) throws Exception {
         try{
-            //Debugging Azure pipeline
-
-//            System.out.println("SYSTEM: "+System.getenv("SYSTEM"));
-//            System.out.println("BUILD_BUILDNUMBER: "+System.getenv("BUILD_BUILDNUMBER"));
-//            System.out.println("BUILD_BUILDID: "+System.getenv("BUILD_BUILDID"));
-            //ChromeOptions chromeOptions = new ChromeOptions();
-
-            //chromeOptions.addArguments("--disable-web-security");
-
             JSONParser parser = new JSONParser();
             JSONObject config = (JSONObject) parser.parse(new FileReader("src/test/resources/web/conf/" + config_file));
             JSONObject envs = (JSONObject) config.get("environments");
 
             capabilities = new DesiredCapabilities();
             capabilities.setCapability("name",method.getName());
-            //capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
-            //platformCaps = ((HasCapabilities) driver).getCapabilities();
-
-            buildName  =((Map<String, String>) config.get("capabilities")).get("build");
-            //System.out.println(buildName);
-//        if(buildName.equals("BROWSERSTACK_BUILD_NAME")){
-//            buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
-//            capabilities.setCapability("build",buildName);
-//        }
 
             buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
-            if(buildName!=null || buildName!=""){
-                capabilities.setCapability("build",buildName);
+            if(buildName==null || buildName=="") {
+                buildName  =((Map<String, String>) config.get("capabilities")).get("build");
             }
-            System.out.println("Build name: "+buildName);
-
+            capabilities.setCapability("build",buildName);
             try{
                 isLocalEnabled = ((Map<String, String>) config.get("capabilities")).get("browserstack.local");
             }catch (Exception e){
@@ -90,11 +72,6 @@ public class BrowserStackWebRunner {
                 System.out.println("Local Identifier: "+localIdentifier);
                 capabilities.setCapability("browserstack.localIdentifier",localIdentifier);
             }
-
-            //capabilities.setCapability("name",buildName);
-
-            //capabilities.setCapability("build", System.getenv("BUILD_NUMBER"));
-            //capabilities.setCapability("name", "parallel_test "+System.getenv("BUILD_NUMBER"));
 
 
             Map<String, String> envCapabilities = (Map<String, String>) envs.get(environment);
@@ -124,7 +101,7 @@ public class BrowserStackWebRunner {
             //driver = new RemoteWebDriver(new URL("https://"+username+":"+accessKey+"@"+"localhost:9688/wd/hub"), capabilities); //Request Debugger Reverse proxy
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         }catch (WebDriverException webDriverException){
-            //System.out.println(webDriverException.getMessage());
+
             if(webDriverException.getMessage().contains("All parallel tests are currently in use")){
                 System.out.println("Retry, as cant queue more.");
                 System.out.println("testname: "+context.getName());
@@ -137,8 +114,15 @@ public class BrowserStackWebRunner {
 
 
     @AfterMethod(alwaysRun=true)
-    public void tearDown() throws Exception {
+    public void tearDown(ITestResult result) throws Exception {
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
 
+        if( result.getStatus() == ITestResult.SUCCESS) {
+            jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\", \"reason\": \""+result.getName()+" passed!\"}}");
+        }
+        else{
+            jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"failed\", \"reason\": \""+result.getThrowable()+"\"}}");
+        }
         driver.quit();
     }
 

@@ -4,7 +4,7 @@
   "key": "BROWSERSTACK_ACCESS_KEY",
 
   "capabilities": {
-    "build": "BROWSERSTACK_BUILD_NAME",
+    "build": "JavaDemo",
     "project": "BrowserStack demo - App Android",
     "name": "single_test",
     "browserstack.debug": "true",
@@ -14,7 +14,7 @@
 
   "environments": {
     "samsung": {
-      "device": "Samsung Galaxy S10"
+      "device": "Samsung Galaxy S22"
     }
   }
 }

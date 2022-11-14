@@ -1,4 +1,4 @@
-package web;
+package web.testing;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;

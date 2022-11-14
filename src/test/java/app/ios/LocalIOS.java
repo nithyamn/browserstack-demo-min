@@ -44,15 +44,6 @@ public class LocalIOS extends BrowserStackIOSRunner {
 
         String expectedString = "Up and running";
         Assert.assertTrue(resultString.contains(expectedString.toLowerCase()));
-        JavascriptExecutor jse = (JavascriptExecutor)driver;
-
-        if(resultString.contains(expectedString.toLowerCase())) {
-            jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\", \"reason\": \"Validated\"}}");
-        }
-        else{
-            jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"failed\", \"reason\": \"Not Validated\"}}");
-        }
-
     }
 
 }

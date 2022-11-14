@@ -5,10 +5,13 @@ import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 
 import java.io.FileReader;
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -39,12 +42,13 @@ public class BrowserStackIOSRunner {
 
     @BeforeMethod(alwaysRun=true)
     @org.testng.annotations.Parameters(value={"config", "environment"})
-    public void setUp(String config_file, String environment) throws Exception {
+    public void setUp(String config_file, String environment, Method method) throws Exception {
         JSONParser parser = new JSONParser();
         JSONObject config = (JSONObject) parser.parse(new FileReader("src/test/resources/app/ios/" + config_file));
         JSONObject envs = (JSONObject) config.get("environments");
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("name",method.getName());
 
         buildName  =((Map<String, String>) config.get("capabilities")).get("build");
         //System.out.println(buildName);
@@ -96,7 +100,15 @@ public class BrowserStackIOSRunner {
     }
 
     @AfterMethod(alwaysRun=true)
-    public void tearDown() throws Exception {
+    public void tearDown(ITestResult result) throws Exception {
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+
+        if( result.getStatus() == ITestResult.SUCCESS) {
+            jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\", \"reason\": \""+result.getName()+" passed!\"}}");
+        }
+        else{
+            jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"failed\", \"reason\": \""+result.getThrowable()+"\"}}");
+        }
         driver.quit();
     }
     @AfterSuite

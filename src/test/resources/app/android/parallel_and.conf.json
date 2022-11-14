@@ -4,7 +4,7 @@
   "key": "BROWSERSTACK_ACCESS_KEY",
 
   "capabilities": {
-    "build": "BROWSERSTACK_BUILD_NAME",
+    "build": "JavaDemo",
     "project": "BrowserStack demo - App Android",
     "name": "parallel_test",
     "browserstack.debug": "true",
@@ -14,13 +14,13 @@
 
   "environments": {
     "google": {
-      "device": "Google Pixel 5"
+      "device": "Google Pixel 7"
     },
     "samsung": {
-      "device": "Samsung Galaxy Tab S7"
+      "device": "Samsung Galaxy S22 Ultra"
     },
     "oneplus": {
-      "device": "Xiaomi Redmi Note 9"
+      "device": "OnePlus 9"
     },
     "huawei": {
       "device": "Huawei P30"

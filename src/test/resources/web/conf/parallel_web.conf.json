@@ -4,7 +4,7 @@
   "key": "BROWSERSTACK_ACCESS_KEY",
 
   "capabilities": {
-    "build": "BROWSERSTACK_BUILD_NAME",
+    "build": "JavaDemo",
     "project": "BrowserStack demo - Web",
     "name": "parallel_test",
     "browserstack.debug": true,
@@ -15,7 +15,7 @@
   "environments": {
     "chrome": {
       "os": "Windows",
-      "os_version": "10",
+      "os_version": "11",
       "browser": "chrome",
       "browser_version": "latest"
     },
@@ -23,25 +23,19 @@
       "os": "Windows",
       "os_version": "10",
       "browser": "firefox",
-      "browser_version": "latest"
+      "browser_version": "latest-1"
     },
     "safari": {
       "os": "OS X",
       "os_version": "Big Sur",
-      "browser": "Safari",
-      "browser_version": "14.0"
+      "browser": "Edge",
+      "browser_version": "latest-2"
     },
     "android": {
-      "os": "Windows",
-      "os_version": "10",
-      "browser": "Edge",
-      "browser_version": "latest-1"
+      "device": "Samsung Galaxy S22"
     },
     "iphone":{
-      "os": "OS X",
-      "os_version": "Catalina",
-      "browser": "Chrome",
-      "browser_version": "latest-2"
+      "device": "iPhone 14"
     }
   }
 }

@@ -3,7 +3,7 @@
 <suite name="ReqDeb">
     <test name="ReqDeb">
         <classes>
-            <class name="web.ReqDebugger"/>
+            <class name="web.testing.ReqDebugger"/>
         </classes>
     </test>
 </suite>

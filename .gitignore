@@ -5,3 +5,6 @@ DemoNew.iml
 browserstack.err
 /reports
 app/android/DeviceChaining.java
+testing/
+reports/
+downloaded_files/

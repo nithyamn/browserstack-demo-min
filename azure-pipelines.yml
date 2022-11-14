@@ -9,7 +9,7 @@ steps:
     inputs:
       BrowserStackServiceEndPoint: 'bstack-conn'
       browserstackLocal: true
-      bsLocalOptions: 'forceLocal'
+      bsLocalOptions: ''
   - task: Maven@4
     inputs:
       mavenPomFile: 'pom.xml'

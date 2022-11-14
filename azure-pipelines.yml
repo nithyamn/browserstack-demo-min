@@ -9,7 +9,7 @@ steps:
     inputs:
       BrowserStackServiceEndPoint: 'bstack-conn'
       browserstackLocal: true
-      bsLocalOptions: 'forceLocal'
+      bsLocalOptions: ''
   - task: Maven@4
     inputs:
       mavenPomFile: 'pom.xml'
@@ -18,9 +18,7 @@ steps:
       testResultsFiles: '**/surefire-reports/TEST-*.xml'
       javaHomeOption: 'JDKVersion'
       mavenVersionOption: 'Default'
-      mavenAuthenticateFeed: false
-      effectivePomSkip: false
-      sonarQubeRunAnalysis: false
+  
   - task: BrowserStackResults@1
     inputs:
       browserstackProduct: 'automate'

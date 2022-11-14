@@ -18,9 +18,7 @@ steps:
       testResultsFiles: '**/surefire-reports/TEST-*.xml'
       javaHomeOption: 'JDKVersion'
       mavenVersionOption: 'Default'
-      mavenAuthenticateFeed: false
-      effectivePomSkip: false
-      sonarQubeRunAnalysis: false
+  
   - task: BrowserStackResults@1
     inputs:
       browserstackProduct: 'automate'

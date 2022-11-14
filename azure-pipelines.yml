@@ -13,12 +13,34 @@ steps:
   - task: Maven@4
     inputs:
       mavenPomFile: 'pom.xml'
-      goals: 'test -P single_web'
+      goals: 'test -P parallel_web'
       publishJUnitResults: true
       testResultsFiles: '**/surefire-reports/TEST-*.xml'
       javaHomeOption: 'JDKVersion'
       mavenVersionOption: 'Default'
-  
+  - task: CmdLine@2
+    inputs:
+      script: 'sh runLocalTest.sh'
   - task: BrowserStackResults@1
     inputs:
       browserstackProduct: 'automate'
+      
+  - task: BrowserStackAppUploader@0
+    inputs:
+      appPath: 'src/test/resources/executables/WikipediaSample.apk'
+  
+  - task: Maven@4
+    inputs:
+      mavenPomFile: 'pom.xml'
+      goals: 'test -P parallel_and'
+      publishJUnitResults: true
+      testResultsFiles: '**/surefire-reports/TEST-*.xml'
+      javaHomeOption: 'JDKVersion'
+      mavenVersionOption: 'Default'
+      mavenAuthenticateFeed: false
+      effectivePomSkip: false
+      sonarQubeRunAnalysis: false
+  
+  - task: BrowserStackResults@1
+    inputs:
+      browserstackProduct: 'app-automate'

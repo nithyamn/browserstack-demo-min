@@ -9,15 +9,16 @@
     "name": "single_test",
     "browserstack.debug": true,
     "browserstack.networkLogs": true,
-    "browserstack.console": "verbose"
+    "browserstack.console": "verbose",
+    "resolution": "1024x768"
   },
 
   "environments": {
     "chrome": {
-      "browser": "Safari",
+      "browser": "Chrome",
       "browser_version": "latest",
-      "os": "OS X",
-      "os_version": "Big Sur"
+      "os": "Windows",
+      "os_version": "11"
     }
   }
 }

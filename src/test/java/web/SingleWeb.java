@@ -15,17 +15,17 @@ class SingleWeb extends BrowserStackWebRunner {
     @Test
     public void cedPageNavigation() throws Exception{
         driver.get("https://cedcareers.com/");
-        driver.findElement(By.linkText("OPPORTUNITIES")).click();
-        driver.findElement(By.linkText("SALES")).click();
-        Assert.assertEquals(driver.getTitle(),"Opportunities | CED Careers");
+        driver.get("https://cedcareers.com/connect/");
+        Thread.sleep(2000);
+        Assert.assertEquals(driver.getTitle(),"Connect | CED Careers");
     }
 
     @Test
     public void cedPageNavigationFail() throws Exception{
         driver.get("https://cedcareers.com/");
-        driver.findElement(By.linkText("Opportunities")).click();
-        driver.findElement(By.linkText("SALES")).click();
-        Assert.assertEquals(driver.getTitle(),"Story | CED Careers");
+        driver.get("https://cedcareers.com/connect/");
+        Thread.sleep(2000);
+        Assert.assertEquals(driver.getTitle(),"Opportunities | CED Careers");
     }
 
     //@Test

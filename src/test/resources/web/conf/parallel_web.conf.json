@@ -8,7 +8,7 @@
     "project": "BrowserStack demo - Web",
     "name": "parallel_test",
     "browserstack.debug": true,
-    "browserstack.networkLogs": false,
+    "browserstack.networkLogs": true,
     "browserstack.console": "verbose"
   },
 
@@ -29,8 +29,7 @@
       "os": "OS X",
       "os_version": "Big Sur",
       "browser": "Edge",
-      "browser_version": "latest-2",
-      "resolution": "1024x768"
+      "browser_version": "latest-2"
     },
     "android": {
       "device": "Samsung Galaxy S22"

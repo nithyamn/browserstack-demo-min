@@ -13,23 +13,7 @@ class SingleWeb extends BrowserStackWebRunner {
     public JavascriptExecutor jse;
 
     @Test
-    public void cedPageNavigation() throws Exception{
-        driver.get("https://cedcareers.com/");
-        driver.get("https://cedcareers.com/connect/");
-        Thread.sleep(2000);
-        Assert.assertEquals(driver.getTitle(),"Connect | CED Careers");
-    }
-
-    @Test
-    public void cedPageNavigationFail() throws Exception{
-        driver.get("https://cedcareers.com/");
-        driver.get("https://cedcareers.com/connect/");
-        Thread.sleep(2000);
-        Assert.assertEquals(driver.getTitle(),"Opportunities | CED Careers");
-    }
-
-    //@Test
-    public void test() throws Exception {
+    public void samplePassedTest() throws Exception {
 
         /*** Fetch Session ID***/
         SessionId sessionId = ((RemoteWebDriver)driver).getSessionId();
@@ -52,8 +36,8 @@ class SingleWeb extends BrowserStackWebRunner {
         //System.out.println(data);
     }
 
-    //@Test
-    public void failedTest() throws Exception {
+    @Test
+    public void sampleFailedTest() throws Exception {
         /*** Fetch Session ID***/
         SessionId sessionId = ((RemoteWebDriver)driver).getSessionId();
 

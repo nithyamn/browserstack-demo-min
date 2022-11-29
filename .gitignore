@@ -8,3 +8,5 @@ app/android/DeviceChaining.java
 testing/
 reports/
 downloaded_files/
+node_modules/
+package-lock.json

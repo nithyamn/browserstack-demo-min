@@ -22,7 +22,7 @@
     "firefox": {
       "os": "Windows",
       "os_version": "10",
-      "browser": "firefox",
+      "browser": "Edge",
       "browser_version": "latest-1"
     },
     "safari": {

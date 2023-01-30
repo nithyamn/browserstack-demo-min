@@ -57,7 +57,6 @@ public class BrowserStackWebRunner {
 
             capabilities = new DesiredCapabilities();
             capabilities.setCapability("name",method.getName());
-
             buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
             if(buildName==null || buildName=="") {
                 buildName  =((Map<String, String>) config.get("capabilities")).get("build");
@@ -99,7 +98,7 @@ public class BrowserStackWebRunner {
             }
             driver = new RemoteWebDriver(new URL("https://"+username+":"+accessKey+"@"+config.get("server")+"/wd/hub"), capabilities);
             //driver = new RemoteWebDriver(new URL("https://"+username+":"+accessKey+"@"+"localhost:9688/wd/hub"), capabilities); //Request Debugger Reverse proxy
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(35, TimeUnit.SECONDS);
         }catch (WebDriverException webDriverException){
 
             if(webDriverException.getMessage().contains("All parallel tests are currently in use")){
@@ -117,11 +116,15 @@ public class BrowserStackWebRunner {
     public void tearDown(ITestResult result) throws Exception {
         JavascriptExecutor jse = (JavascriptExecutor)driver;
 
-        if( result.getStatus() == ITestResult.SUCCESS) {
-            jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\", \"reason\": \""+result.getName()+" passed!\"}}");
-        }
-        else{
-            jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"failed\", \"reason\": \""+result.getThrowable()+"\"}}");
+        try{
+            if( result.getStatus() != ITestResult.SUCCESS) {
+                jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"failed\", \"reason\": \""+result.getThrowable()+"\"}}");
+            }
+            else{
+                jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\", \"reason\": \""+result.getName()+" passed!\"}}");
+            }
+        }catch (Exception e){
+            jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"failed\", \"reason\": \"Exception!\"}}");
         }
         driver.quit();
     }

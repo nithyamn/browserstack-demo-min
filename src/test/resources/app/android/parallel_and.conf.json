@@ -9,7 +9,7 @@
     "name": "parallel_test",
     "browserstack.debug": "true",
     "browserstack.networkLogs": "true",
-    "app": "BROWSERSTACK_APP_ID"
+    "app": "BROWSERSTACK_APP_ID",
   },
 
   "environments": {

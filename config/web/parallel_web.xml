@@ -9,7 +9,7 @@
             <class name="web.SingleWeb">
                 <methods>
                     <exclude name="failedTest"></exclude>
-                    <exclude name="cedPageNavigationFail"></exclude>
+                    <exclude name="customFailedTest"></exclude>
                 </methods>
             </class>
         </classes>
@@ -22,7 +22,7 @@
             <class name="web.SingleWeb">
                 <methods>
                     <exclude name="failedTest"></exclude>
-                    <exclude name="cedPageNavigationFail"></exclude>
+                    <exclude name="customFailedTest"></exclude>
                 </methods>
             </class>
         </classes>
@@ -35,7 +35,7 @@
             <class name="web.SingleWeb">
                 <methods>
                     <exclude name="failedTest"></exclude>
-                    <exclude name="cedPageNavigationFail"></exclude>
+                    <exclude name="customFailedTest"></exclude>
                 </methods>
             </class>
         </classes>
@@ -48,7 +48,7 @@
             <class name="web.SingleWeb">
                 <methods>
                     <exclude name="failedTest"></exclude>
-                    <exclude name="cedPageNavigationFail"></exclude>
+                    <exclude name="customFailedTest"></exclude>
                 </methods>
             </class>
         </classes>
@@ -60,7 +60,7 @@
             <class name="web.SingleWeb">
                 <methods>
                     <exclude name="failedTest"></exclude>
-                    <exclude name="cedPageNavigationFail"></exclude>
+                    <exclude name="customFailedTest"></exclude>
                 </methods>
             </class>
         </classes>

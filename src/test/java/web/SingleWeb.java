@@ -11,40 +11,33 @@ import java.util.List;
 
 class SingleWeb extends BrowserStackWebRunner {
     public JavascriptExecutor jse;
-    @Test
+    //@Test
     public void customPassedTest() throws Exception {
 
         /*** Fetch Session ID***/
         SessionId sessionId = ((RemoteWebDriver)driver).getSessionId();
         jse = (JavascriptExecutor)driver;
-
-        driver.get("https://www.check24.de/versicherungen/");
-        driver.findElement(By.linkText("Akzeptieren")).click();
-        driver.findElement(By.id("c24-search-header")).sendKeys("cashback", Keys.ENTER);
-        String result = driver.findElement(By.className("result-message__box--desktop")).getText();
-        Assert.assertTrue(result.contains("cashback"));
+        driver.get("");
+        Assert.assertEquals(driver.getTitle(),"");
 
         /***Get session details***/
         //String data = GetSessionDetails.sessionData(sessionId);
         //System.out.println(data);
     }
 
-    @Test
+    //@Test
     public void customFailedTest() throws Exception {
         /*** Fetch Session ID***/
         SessionId sessionId = ((RemoteWebDriver)driver).getSessionId();
+        driver.get("");
+        Assert.assertEquals(driver.getTitle(),"");
 
-        driver.get("https://www.check24.de/versicherungen/");
-        driver.findElement(By.linkText("Akzeptieren")).click();
-        driver.findElement(By.id("c24-search-header")).sendKeys("cashback", Keys.ENTER);
-        String result = driver.findElement(By.className("result-message__box--desktop")).getText();
-        Assert.assertTrue(result.contains("sample"));
 
         /***Get session details***/
         //String data = GetSessionDetails.sessionData(sessionId);
         //System.out.println(data);
     }
-    //@Test
+    @Test
     public void samplePassedTest() throws Exception {
 
         /*** Fetch Session ID***/
@@ -67,7 +60,6 @@ class SingleWeb extends BrowserStackWebRunner {
         //String data = GetSessionDetails.sessionData(sessionId);
         //System.out.println(data);
     }
-
     //@Test
     public void sampleFailedTest() throws Exception {
         /*** Fetch Session ID***/

@@ -9,8 +9,7 @@
     "name": "single_test",
     "browserstack.debug": true,
     "browserstack.networkLogs": true,
-    "browserstack.console": "verbose",
-    "resolution": "1024x768"
+    "browserstack.console": "verbose"
   },
 
   "environments": {

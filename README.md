@@ -29,7 +29,11 @@ iOS
 * Single - `mvn test -P parallel_ios`
 
 Device features (Android)
-* `mvn -Dtest=DeviceFeaturesAndroid test`
+
+- Upload the app (`src/test/resources/executables/regression.apk`)
+- Upload the media to be injected (for both Image injection and QR scanning - Images in `src/test/resources/images`)
+- Add the app hashed id and the media URL in the `src/test/java/app/android/DeviceFeaturesAndroid.java`file
+* Run: `mvn -Dtest=DeviceFeaturesAndroid test`
 
 Run All tests 
 * `sh run.sh`

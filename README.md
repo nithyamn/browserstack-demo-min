@@ -13,7 +13,7 @@ export BROWSERSTACK_MEDIA_URL=<media-hashed-id>
 
 ### Automate
 * Single - `mvn test -P single_web`
-* Local - `m`
+* Local - `mvn test -P local_web`
 * Single - `mvn test -P parallel_web`
 
 ### App Automate

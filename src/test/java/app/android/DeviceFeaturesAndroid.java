@@ -14,14 +14,14 @@ public class DeviceFeaturesAndroid {
     public static String accessKey = System.getenv("BROWSERSTACK_ACCESS_KEY");
     @Test
     public void cameraInjectionTest() throws MalformedURLException, InterruptedException {
-        String mediaUrl = "media://054dce0c24c5fa14ba748cd024b03e5357415b9b";
+        String mediaUrl = "media://<media-url>";
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("device","Google Pixel 7");
         caps.setCapability("build","Device Features - Android");
         caps.setCapability("name","cameraInjectionTest");
         caps.setCapability("autoGrantPermissions","true");
         caps.setCapability("interactiveDebugging","true");
-        caps.setCapability("app","bs://b721c8d8c1ce1194339ad189a494b3164ff52468"); //regression.apk
+        caps.setCapability("app","bs://<app-hashed-id>"); //regression.apk
         caps.setCapability("browserstack.enableCameraImageInjection", "true");
 
         AndroidDriver driver = new AndroidDriver(new URL("https://"+username+":"+accessKey+"@hub-cloud.browserstack.com/wd/hub"),caps);
@@ -55,14 +55,14 @@ public class DeviceFeaturesAndroid {
 
     @Test
     public void qrScanTest() throws MalformedURLException, InterruptedException {
-        String mediaUrl = "media://5edba1ec1851a40cefcfef081415e9b26ef6af9e";
+        String mediaUrl = "media://<media-url>";
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("device","Google Pixel 7");
         caps.setCapability("build","Device Features - Android");
         caps.setCapability("name","qrScanTest");
         caps.setCapability("autoGrantPermissions","true");
         caps.setCapability("interactiveDebugging","true");
-        caps.setCapability("app","bs://b721c8d8c1ce1194339ad189a494b3164ff52468"); //regression.apk
+        caps.setCapability("app","bs://<app-hashed-id>"); //regression.apk
         caps.setCapability("browserstack.enableCameraImageInjection", "true");
 
         AndroidDriver driver = new AndroidDriver(new URL("https://"+username+":"+accessKey+"@hub-cloud.browserstack.com/wd/hub"),caps);
@@ -82,7 +82,7 @@ public class DeviceFeaturesAndroid {
         caps.setCapability("name","biometricTest");
         caps.setCapability("autoGrantPermissions","true");
         caps.setCapability("interactiveDebugging","true");
-        caps.setCapability("app","bs://b721c8d8c1ce1194339ad189a494b3164ff52468"); //regression.apk
+        caps.setCapability("app","bs://<app-hashed-id>"); //regression.apk
         caps.setCapability("browserstack.enableBiometric", "true");
 
         AndroidDriver driver = new AndroidDriver(new URL("https://"+username+":"+accessKey+"@hub-cloud.browserstack.com/wd/hub"),caps);

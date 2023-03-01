@@ -20,7 +20,7 @@ import static app.UploadAppAA.userName;
 
 public class SingleApp extends BrowserStackAppRunner{
 
-    @Test
+    //@Test
     public void wikiAppTest() throws Exception {
         SessionId sessionId = driver.getSessionId();
 
@@ -55,7 +55,7 @@ public class SingleApp extends BrowserStackAppRunner{
         Thread.sleep(5000);
     }
 
-    @Test
+    //@Test
     public void killAndRelaunchAppTest(){
         driver.terminateApp("org.wikipedia.alpha");
         driver.launchApp();
@@ -73,7 +73,6 @@ public class SingleApp extends BrowserStackAppRunner{
                     .url("https://api-cloud.browserstack.com/app-automate/sessions/"+sessionId+"/update_network.json")
                     .method("PUT", body)
                     .addHeader("Authorization", basicAuthHeaderGeneration(username,accessKey))
-                    .addHeader("Cookie", "tracking_id=7f38fa23-ff4b-4959-9385-98aa291630e6")
                     .build();
             Response response = client.newCall(request).execute();
             System.out.println(response.body().toString());

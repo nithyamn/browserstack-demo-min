@@ -32,10 +32,16 @@
       "browser_version": "latest-2"
     },
     "android": {
-      "device": "Samsung Galaxy S22"
+      "os": "Windows",
+      "os_version": "11",
+      "browser": "Firefox",
+      "browser_version": "latest"
     },
     "iphone":{
-      "device": "iPhone 14"
+      "os": "OS X",
+      "os_version": "Ventura",
+      "browser": "Safari",
+      "browser_version": "latest"
     }
   }
 }

@@ -10,7 +10,8 @@
     "browserstack.debug": "true",
     "browserstack.networkLogs": "true",
     "app": "BROWSERSTACK_APP_ID",
-    "browserstack.local": "true"
+    "browserstack.local": "true",
+    "interactiveDebugging": "true"
   },
 
   "environments": {

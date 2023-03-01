@@ -33,7 +33,7 @@
         <dependency>
             <groupId>com.browserstack</groupId>
             <artifactId>browserstack-local-java</artifactId>
-            <version>1.0.3</version>
+            <version>1.0.6</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -124,36 +124,6 @@
 
     <build>
         <plugins>
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-surefire-plugin</artifactId>-->
-<!--                <version>2.22.2</version>-->
-<!--            </plugin>-->
-<!--            <plugin>-->
-<!--                <groupId>com.browserstack</groupId>-->
-<!--                <artifactId>automate-maven-plugin</artifactId>-->
-<!--                <version>1.1.0</version>-->
-<!--                <configuration>-->
-<!--                    <source>1.8</source>-->
-<!--                    <target>1.8</target>-->
-<!--                    <complianceLevel>1.8</complianceLevel>-->
-<!--                </configuration>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <goals>-->
-<!--                            <goal>test-compile</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-compiler-plugin</artifactId>-->
-<!--                <configuration>-->
-<!--                    <source>1.8</source>-->
-<!--                    <target>1.8</target>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -216,7 +186,6 @@
                         <configuration>
                             <suiteXmlFiles>
                                 <suiteXmlFile>config/web/parallel_web.xml</suiteXmlFile>
-<!--                                <suiteXmlFile>config/web/parallel.next.xml</suiteXmlFile>&ndash;&gt;-->
                             </suiteXmlFiles>
                         </configuration>
                     </plugin>
@@ -341,24 +310,6 @@
                 </plugins>
             </build>
         </profile>
-        <profile>
-            <id>reqdeb</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <configuration>
-                            <suiteXmlFiles>
-                                <suiteXmlFile>config/req_deb.xml</suiteXmlFile>
-                            </suiteXmlFiles>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-
     </profiles>
 
 </project>

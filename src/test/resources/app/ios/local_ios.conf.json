@@ -15,7 +15,7 @@
 
   "environments": {
     "iOS1": {
-      "device": "iPhone 8"
+      "device": "iPhone 12"
     }
   }
 }

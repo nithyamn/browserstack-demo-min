@@ -21,7 +21,7 @@ public class LocalWeb extends BrowserStackWebRunner {
     public void localTest() throws Exception {
         /*** Fetch Session ID***/
         SessionId sessionId = ((RemoteWebDriver)driver).getSessionId();
-        driver.get("http://localhost:8888");
-        Assert.assertEquals(driver.getTitle(),"BrowserStack | Local Website");
+        driver.get("http://localhost:45691/check");
+        Assert.assertEquals(driver.findElement(By.cssSelector("body")).getText(),"Up and running");
     }
 }

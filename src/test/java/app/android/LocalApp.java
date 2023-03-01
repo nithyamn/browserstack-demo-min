@@ -16,7 +16,7 @@ import java.util.List;
 
 public class LocalApp extends BrowserStackAppRunner{
     @Test
-    public void test() throws Exception {
+    public void localAndroidTest() throws Exception {
         driver.findElementById("android:id/button1").click();
 
         AndroidElement searchElement = (AndroidElement) new WebDriverWait(driver, 30).until(

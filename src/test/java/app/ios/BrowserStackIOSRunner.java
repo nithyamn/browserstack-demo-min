@@ -1,5 +1,6 @@
 package app.ios;
 
+import app.UploadAppAA;
 import com.browserstack.local.Local;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
@@ -29,20 +30,19 @@ public class BrowserStackIOSRunner {
     @BeforeSuite
     @Parameters({"local"}) //set to "yes" in XML file(s) if you want to use local testing via code bindings
     public void startLocal(String local) throws Exception {
-        /*if(local.equals("yes")){
+        if(local.equals("yes")){
             System.out.println("Starting Local");
             l = new Local();
             Map<String, String> options = new HashMap<String, String>();
             options.put("key", accessKey);
             l.start(options);
             System.out.println("isRunning: "+l.isRunning());
-
-        }*/
+        }
     }
 
     @BeforeMethod(alwaysRun=true)
-    @org.testng.annotations.Parameters(value={"config", "environment"})
-    public void setUp(String config_file, String environment, Method method) throws Exception {
+    @org.testng.annotations.Parameters(value={"config", "environment", "local"})
+    public void setUp(String config_file, String environment, Method method, String local) throws Exception {
         JSONParser parser = new JSONParser();
         JSONObject config = (JSONObject) parser.parse(new FileReader("src/test/resources/app/ios/" + config_file));
         JSONObject envs = (JSONObject) config.get("environments");
@@ -92,6 +92,14 @@ public class BrowserStackIOSRunner {
         }
 
         String app = System.getenv("BROWSERSTACK_APP_ID");
+        if(app == null){
+            if(local.equals("yes")){
+                app = UploadAppAA.uploadApp("src/test/resources/executables/LocalSample.ipa","local_ios_app");
+            }else{
+                app = UploadAppAA.uploadApp("src/test/resources/executables/BStackSampleApp.ipa","bstack_sample_app");
+            }
+
+        }
         if(app != null && !app.isEmpty()) {
             capabilities.setCapability("app", app);
         }
@@ -113,9 +121,9 @@ public class BrowserStackIOSRunner {
     @AfterSuite
     @Parameters({"local"})
     public void stopLocal(String local) throws Exception {
-        /*if(local.equals("yes")) {
+        if(local.equals("yes")) {
             l.stop();
             System.out.println("Stopping Local");
-        }*/
+        }
     }
 }

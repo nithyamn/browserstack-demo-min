@@ -1,1 +1,0 @@
-./src/test/java/executables/BrowserStackLocal --key $BROWSERSTACK_ACCESS_KEY --daemon start

@@ -11,32 +11,7 @@ import java.util.List;
 
 class SingleWeb extends BrowserStackWebRunner {
     public JavascriptExecutor jse;
-    //@Test
-    public void customPassedTest() throws Exception {
 
-        /*** Fetch Session ID***/
-        SessionId sessionId = ((RemoteWebDriver)driver).getSessionId();
-        jse = (JavascriptExecutor)driver;
-        driver.get("");
-        Assert.assertEquals(driver.getTitle(),"");
-
-        /***Get session details***/
-        //String data = GetSessionDetails.sessionData(sessionId);
-        //System.out.println(data);
-    }
-
-    //@Test
-    public void customFailedTest() throws Exception {
-        /*** Fetch Session ID***/
-        SessionId sessionId = ((RemoteWebDriver)driver).getSessionId();
-        driver.get("");
-        Assert.assertEquals(driver.getTitle(),"");
-
-
-        /***Get session details***/
-        //String data = GetSessionDetails.sessionData(sessionId);
-        //System.out.println(data);
-    }
     @Test
     public void samplePassedTest() throws Exception {
 
@@ -51,16 +26,16 @@ class SingleWeb extends BrowserStackWebRunner {
             System.out.println(e.getMessage());
         }
         WebElement element = driver.findElement(By.name("q"));
-        element.sendKeys("BrowserStack");
+        element.sendKeys("Syngenta");
         element.submit();
         Thread.sleep(5000);
-        Assert.assertEquals(driver.getTitle(),"BrowserStack - Google Search");
+        Assert.assertEquals(driver.getTitle(),"Syngenta - Google Search");
 
         /***Get session details***/
         //String data = GetSessionDetails.sessionData(sessionId);
         //System.out.println(data);
     }
-    //@Test
+    @Test
     public void sampleFailedTest() throws Exception {
         /*** Fetch Session ID***/
         SessionId sessionId = ((RemoteWebDriver)driver).getSessionId();
@@ -72,10 +47,10 @@ class SingleWeb extends BrowserStackWebRunner {
             System.out.println(e.getMessage());
         }
         WebElement element = driver.findElement(By.name("q"));
-        element.sendKeys("BrowserStack");
+        element.sendKeys("Syngenta");
         element.submit();
         Thread.sleep(5000);
-        Assert.assertEquals(driver.getTitle(),"BrowserStack - Google Search - Wrong");
+        Assert.assertEquals(driver.getTitle(),"Syngenta - Google Search - Pricing");
 
         /***Get session details***/
         String data = GetSessionDetails.sessionData(sessionId);

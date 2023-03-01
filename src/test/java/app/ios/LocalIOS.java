@@ -18,7 +18,7 @@ import java.io.File;
 
 public class LocalIOS extends BrowserStackIOSRunner {
     @Test
-    public void test() throws Exception {
+    public void localIOSTest() throws Exception {
         IOSElement testButton = (IOSElement) new WebDriverWait(driver, 30).until(
                 ExpectedConditions.elementToBeClickable(MobileBy.AccessibilityId("TestBrowserStackLocal")));
         testButton.click();

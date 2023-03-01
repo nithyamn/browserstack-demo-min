@@ -13,10 +13,10 @@ export BROWSERSTACK_MEDIA_URL=<media-hashed-id>
 
 ### Automate
 * Single - `mvn test -P single_web`
-* Local - `sh runLocalTest.sh`
+* Local - `m`
 * Single - `mvn test -P parallel_web`
 
-### Automate
+### App Automate
 
 Android
 * Single - `mvn test -P single_and`
@@ -28,9 +28,11 @@ iOS
 * Local - `mvn test -P local_ios`
 * Single - `mvn test -P parallel_ios`
 
-Camera Injection
-* `mvn -Dtest=CameraInjection test`
+Device features (Android)
+* `mvn -Dtest=DeviceFeaturesAndroid test`
 
+Run All tests 
+* `sh run.sh`
 
 
 

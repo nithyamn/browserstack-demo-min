@@ -6,7 +6,13 @@
         <parameter name="config" value="parallel_and.conf.json"/>
         <parameter name="environment" value="google"/>
         <classes>
-            <class name="app.android.SingleApp"/>
+            <class name="app.android.SingleApp">
+                <methods>
+                    <exclude name="offlineModeTest"></exclude>
+                    <exclude name="killAndRelaunchAppTest"></exclude>
+                </methods>
+            </class>
+
         </classes>
     </test>
 
@@ -14,7 +20,12 @@
         <parameter name="config" value="parallel_and.conf.json"/>
         <parameter name="environment" value="samsung"/>
         <classes>
-            <class name="app.android.SingleApp"/>
+            <class name="app.android.SingleApp">
+                <methods>
+                    <exclude name="offlineModeTest"></exclude>
+                    <exclude name="killAndRelaunchAppTest"></exclude>
+                </methods>
+            </class>
         </classes>
     </test>
 
@@ -22,14 +33,24 @@
         <parameter name="config" value="parallel_and.conf.json"/>
         <parameter name="environment" value="oneplus"/>
         <classes>
-            <class name="app.android.SingleApp"/>
+            <class name="app.android.SingleApp">
+                <methods>
+                    <exclude name="offlineModeTest"></exclude>
+                    <exclude name="killAndRelaunchAppTest"></exclude>
+                </methods>
+            </class>
         </classes>
     </test>
     <test name="SingleTestHuawei">
         <parameter name="config" value="parallel_and.conf.json"/>
         <parameter name="environment" value="huawei"/>
         <classes>
-            <class name="app.android.SingleApp"/>
+            <class name="app.android.SingleApp">
+                <methods>
+                    <exclude name="offlineModeTest"></exclude>
+                    <exclude name="killAndRelaunchAppTest"></exclude>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>

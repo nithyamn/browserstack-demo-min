@@ -32,19 +32,18 @@ public class BrowserStackAppRunner {
     @BeforeSuite
     @Parameters({"local"}) //set to "yes" in XML file(s) if you want to use local testing via code bindings
     public void startLocal(String local) throws Exception {
-        /*if(local.equals("yes")){
+        if(local.equals("yes")){
             System.out.println("Starting Local");
             l = new Local();
             Map<String, String> options = new HashMap<String, String>();
             options.put("key", accessKey);
             l.start(options);
             System.out.println("isRunning: "+l.isRunning());
-
-        }*/
+        }
     }
     @BeforeMethod(alwaysRun=true)
-    @org.testng.annotations.Parameters(value={"config", "environment"})
-    public void setUp(String config_file, String environment, Method method) throws Exception {
+    @org.testng.annotations.Parameters(value={"config", "environment", "local"})
+    public void setUp(String config_file, String environment, Method method, String local) throws Exception {
         JSONParser parser = new JSONParser();
         JSONObject config = (JSONObject) parser.parse(new FileReader("src/test/resources/app/android/" + config_file));
         JSONObject envs = (JSONObject) config.get("environments");
@@ -94,7 +93,12 @@ public class BrowserStackAppRunner {
 
         String app = System.getenv("BROWSERSTACK_APP_ID");
         if(app == null){
-            app = UploadAppAA.uploadApp("/Users/nithyamani/Desktop/Tools/APPS/WikipediaSample.apk","wiki_app_new");
+            if(local.equals("yes")){
+                app = UploadAppAA.uploadApp("src/test/resources/executables/LocalSample.apk","local_android_app");
+            }else{
+                app = UploadAppAA.uploadApp("src/test/resources/executables/WikipediaSample.apk","wiki_app_new");
+            }
+
         }
         if(app != null && !app.isEmpty()) {
             capabilities.setCapability("app", app);
@@ -119,10 +123,10 @@ public class BrowserStackAppRunner {
     @AfterSuite
     @Parameters({"local"})
     public void stopLocal(String local) throws Exception {
-        /*if(local.equals("yes")) {
+        if(local.equals("yes")) {
             l.stop();
             System.out.println("Stopping Local");
-        }*/
+        }
     }
 
 }

@@ -14,13 +14,14 @@
 
   "environments": {
     "iOS1": {
-      "device": "iPhone 13"
+      "device": "iPhone 13 Pro Max"
     },
     "iOS2": {
       "device": "iPhone 14"
     },
     "iOS3": {
-      "device": "iPad Air 5"
+      "device": "iPad Air 4",
+      "os_version": "14"
     }
   }
 }

@@ -35,16 +35,14 @@ public class BrowserStackWebRunner {
     @BeforeSuite
     @Parameters({"local"}) //set to "yes" in XML file(s) if you want to use local testing via code bindings
     public void startLocal(String local) throws Exception {
-//        if(local.equals("yes")){
-//            System.out.println("Starting Local");
-//            l = new Local();
-//            Map<String, String> options = new HashMap<String, String>();
-//            options.put("key", accessKey);
-//            options.put("v", "true");
-//            //options.put("logFile", "logjava.txt");
-//            l.start(options);
-//            System.out.println("isRunning: "+l.isRunning());
-//        }
+        if(local.equals("yes")){
+            System.out.println("Starting Local");
+            l = new Local();
+            Map<String, String> options = new HashMap<String, String>();
+            options.put("key", accessKey);
+            l.start(options);
+            System.out.println("isRunning: "+l.isRunning());
+        }
     }
 
     @BeforeMethod(alwaysRun=true)
@@ -56,6 +54,7 @@ public class BrowserStackWebRunner {
             JSONObject envs = (JSONObject) config.get("environments");
 
             capabilities = new DesiredCapabilities();
+
             capabilities.setCapability("name",method.getName());
             buildName = System.getenv("BROWSERSTACK_BUILD_NAME");
             if(buildName==null || buildName=="") {
@@ -97,10 +96,8 @@ public class BrowserStackWebRunner {
                 accessKey = (String) config.get("key");
             }
             driver = new RemoteWebDriver(new URL("https://"+username+":"+accessKey+"@"+config.get("server")+"/wd/hub"), capabilities);
-            //driver = new RemoteWebDriver(new URL("https://"+username+":"+accessKey+"@"+"localhost:9688/wd/hub"), capabilities); //Request Debugger Reverse proxy
-            driver.manage().timeouts().implicitlyWait(35, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         }catch (WebDriverException webDriverException){
-
             if(webDriverException.getMessage().contains("All parallel tests are currently in use")){
                 System.out.println("Retry, as cant queue more.");
                 System.out.println("testname: "+context.getName());
@@ -115,7 +112,6 @@ public class BrowserStackWebRunner {
     @AfterMethod(alwaysRun=true)
     public void tearDown(ITestResult result) throws Exception {
         JavascriptExecutor jse = (JavascriptExecutor)driver;
-
         try{
             if( result.getStatus() != ITestResult.SUCCESS) {
                 jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"failed\", \"reason\": \""+result.getThrowable()+"\"}}");
@@ -132,10 +128,9 @@ public class BrowserStackWebRunner {
     @AfterSuite
     @Parameters({"local"})
     public void stopLocal(String local) throws Exception {
-//        System.out.println("Failed tests are: "+failedTests);
-//        if(local.equals("yes")) {
-//            l.stop();
-//            System.out.println("Stopping Local");
-//        }
+        if(local.equals("yes")) {
+            l.stop();
+            System.out.println("Stopping Local");
+        }
     }
 }

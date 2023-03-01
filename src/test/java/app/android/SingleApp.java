@@ -20,7 +20,7 @@ import static app.UploadAppAA.userName;
 
 public class SingleApp extends BrowserStackAppRunner{
 
-    //@Test
+    @Test
     public void wikiAppTest() throws Exception {
         SessionId sessionId = driver.getSessionId();
 
@@ -55,7 +55,7 @@ public class SingleApp extends BrowserStackAppRunner{
         Thread.sleep(5000);
     }
 
-    //@Test
+    @Test
     public void killAndRelaunchAppTest(){
         driver.terminateApp("org.wikipedia.alpha");
         driver.launchApp();
